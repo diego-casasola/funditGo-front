@@ -1,0 +1,23 @@
+<section class="header-principal" [ngClass]="{'landing': isLanding}">
+    <div class="container-nav">
+        <div class="img-menu">
+            <div class="text-logo">
+                <a [routerLink]="['/']">
+                    <img id="logo" src="../../../../assets/images/funditgo_logo1_stroke.png" alt="Logo">
+                    <span class="title">FunditGo</span>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <ul class="horizontal-menu">
+                    <li><a [routerLink]="['/']" routerLinkActive="active">Inicio</a></li>
+                    <li><a [routerLink]="['/proyectos']" routerLinkActive="active">Proyectos</a></li>
+                    <li><a routerLink="/principal/contacto" routerLinkActive="active">Organizadores</a></li>
+                    <li><a routerLink="/principal/contacto" routerLinkActive="active">Ayuda Social</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="login-link">
+            <a [routerLink]="['/auth/login']" routerLinkActive="active">Iniciar sesión</a>
+        </div>
+    </div>
+</section>

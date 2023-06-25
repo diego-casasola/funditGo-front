@@ -1,0 +1,65 @@
+.formularioBusqueda {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+
+    .form-control {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+.name {
+    width: 700px;
+}
+
+.name input {
+    width: 100%;
+    font-size: 16px;
+    border-color: #cccccc;
+    border-style: solid;
+    border-radius: 50px;
+    border-width: 0px;
+    padding: 20px;
+    box-shadow: 0px 0px 8px 0px rgba(42, 42, 42, .22);
+    text-shadow: 0px 0px 0px rgba(42, 42, 42, .0);
+    color: #65A6A6;
+    font-size: large;
+
+}
+
+.name input:focus {
+    outline: none;
+}
+
+.more-filters {
+    width: 700px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+mat-slider {
+    width: 250px;
+}
+
+.example-result-card .example-label-container.example-label-horizontal {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 12px 16px;
+    max-width: 284px;
+}
+
+.example-label-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

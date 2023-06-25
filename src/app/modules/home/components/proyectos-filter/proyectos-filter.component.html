@@ -1,0 +1,32 @@
+<section>
+    <form class="formularioBusqueda" [formGroup]="filterForm">
+        <div class="name">
+            <input placeholder="Nombre del proyecto..." formControlName="search">
+        </div>
+        <div class="more-filters">
+            <mat-form-field appearance="outline">
+                <mat-label>Categorias</mat-label>
+                <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                        {{option.name}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Fecha de Nacimiento</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div>
+                <div class="example-label-container">
+                    <label id="example-name-label" class="example-name-label">Max Value</label>
+                    <label class="example-value-label">{{value}}</label>
+                </div>
+                <mat-slider thumbLabel [displayWith]="formatLabel" min="min" max="max" aria-label="units"
+                    [(ngModel)]="value"></mat-slider>
+            </div>
+        </div>
+    </form>
+</section>

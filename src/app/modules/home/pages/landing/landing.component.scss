@@ -1,0 +1,51 @@
+.landing-container {
+    width: 100%;
+    position: relative;
+    justify-content: center;
+}
+
+.landing-container .header {
+    position: relative;
+}
+
+.landing-container .header img {
+    max-width: 70%;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.header button{
+    width: 300px;
+    background-color: #F2CF63;
+    color: white;
+    border: none;
+    border-radius: 60px;
+    padding: 10px 40px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.header span{
+    font-size: 40px;
+}
+
+.landing-container .header .buttons {
+    position: absolute;
+    left: 50%;
+    bottom: 40px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.landing-container .header .buttons button,
+.landing-container .header .buttons span {
+    margin: 0 10px;
+}
+
+.lista-proyectos{
+    background-color: #F2F0EB;
+}

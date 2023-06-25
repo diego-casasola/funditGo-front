@@ -1,0 +1,40 @@
+.footer-principal {
+    width: 100%;
+    height: auto;
+    background-color: #F2F0EB;
+}
+
+.info-footer {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 25rem;
+    margin-bottom: 10px;
+    padding-top: 30px;
+}
+
+.info-footer a {
+    text-decoration: none;
+    color: #011140;
+    font-size: 15px;
+}
+
+.info-footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.info-footer ul li {
+    margin-bottom: 5px;
+}
+
+.info-footer h3 {
+    color: #011140;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.end {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
