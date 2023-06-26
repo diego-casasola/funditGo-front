@@ -13,7 +13,7 @@ export class BuscadorComponent implements OnInit {
   }
 
   buscar(event: any) {
-    console.log(event.target.value)
+    console.log(event)
   }
 
 }

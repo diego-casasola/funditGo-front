@@ -10,6 +10,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { BuscadorComponent } from './pages/buscador/buscador.component';
 import { ProyectosFilterComponent } from './components/proyectos-filter/proyectos-filter.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { ViewProyectoComponent } from './pages/proyectos/view-proyecto/view-proyecto.component';
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LandingComponent,
     ListaProyectosComponent,
     BuscadorComponent,
-    ProyectosFilterComponent
+    ProyectosFilterComponent,
+    ViewProyectoComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +29,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AutocompleteLibModule
   ]
 })
 export class HomeModule { }

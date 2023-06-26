@@ -4,9 +4,9 @@
             <input placeholder="Nombre del proyecto..." formControlName="search">
         </div>
         <div class="more-filters">
-            <mat-form-field appearance="outline">
-                <mat-label>Categorias</mat-label>
-                <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Categorías</mat-label>
+                <input type="text" matInput formControlName="category" [matAutocomplete]="auto">
                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                         {{option.name}}
@@ -14,19 +14,25 @@
                 </mat-autocomplete>
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <mat-label>Fecha de Nacimiento</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate formControlName="date_start" placeholder="Start date">
+                    <input matEndDate formControlName="date_end" placeholder="End date">
+                </mat-date-range-input>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <mat-date-range-picker #picker></mat-date-range-picker>
             </mat-form-field>
             <div>
                 <div class="example-label-container">
                     <label id="example-name-label" class="example-name-label">Max Value</label>
-                    <label class="example-value-label">{{value}}</label>
+                    <label class="example-value-label">{{value}} Bs</label>
                 </div>
-                <mat-slider thumbLabel [displayWith]="formatLabel" min="min" max="max" aria-label="units"
-                    [(ngModel)]="value"></mat-slider>
+                <mat-slider formControlName="price_start" [(ngModel)]="value"></mat-slider>
             </div>
+        </div>
+        <div class="btn-action">
+            <button mat-raised-button color="primary" (click)="clear()">Limpiar</button>
+            <button mat-raised-button color="primary" (click)="searchCategoria()">Buscar</button>
         </div>
     </form>
 </section>

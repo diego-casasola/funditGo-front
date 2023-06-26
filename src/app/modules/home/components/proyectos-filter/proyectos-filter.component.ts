@@ -1,7 +1,8 @@
+import { formatDate } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { startWith, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-proyectos-filter',
@@ -11,56 +12,78 @@ import { map, startWith } from 'rxjs/operators';
 export class ProyectosFilterComponent implements OnInit {
   @Output('PROYECTO-FILTER') filterOutput = new EventEmitter<any>();
 
-  filterForm = this.fb.group({
+  filterForm: FormGroup = this.fb.group({
     search: [''],
     category: [''],
-    date: [''],
+    date_start: [''],
+    date_end: [''],
     price_start: [''],
-    price_end: ['']
   });
+
+  listaCategoria: any[] = [
+    { id: 1, name: 'Categoría 1' },
+    { id: 2, name: 'Categoría 2' },
+    { id: 3, name: 'Categoría 3' },
+    { id: 4, name: 'Categoría 4' },
+    { id: 5, name: 'Categoría 5' },
+    { id: 6, name: 'Categoría 6' },
+    { id: 7, name: 'Categoría 7' },
+    { id: 8, name: 'Categoría 8' },
+    { id: 9, name: 'Categoría 9' },
+    { id: 10, name: 'Categoría 10' },
+  ];
 
   value: number = 0;
   max = 100;
   min = 0;
   thumbLabel = true;
 
-  myControl = new FormControl();
-  options: User[] = [
-    { name: 'Mary' },
-    { name: 'Shelley' },
-    { name: 'Igor' }
-  ];
-  filteredOptions!: Observable<User[]>;
+  filteredOptions!: Observable<any[]>;
 
   constructor(
     private fb: FormBuilder
   ) { }
 
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => typeof value === 'string' ? value : value.name),
-        map(name => name ? this._filter(name) : this.options.slice())
-      );
+    this.setCategorias();
   }
 
-  displayFn(user: User): string {
+  setCategorias() {
+    this.filteredOptions = this.filterForm.controls['category'].valueChanges
+    .pipe(
+      startWith(''),
+      map(value => typeof value === 'string' ? value : value.name),
+      map(name => name ? this._filter(name) : this.listaCategoria.slice())
+    )
+  }
+
+  displayFn(user: any): string {
     return user && user.name ? user.name : '';
   }
 
-  private _filter(name: string): User[] {
+  private _filter(name: string): any[] {
     const filterValue = name.toLowerCase();
 
-    return this.options.filter(option => option.name.toLowerCase().includes(filterValue));
+    return this.listaCategoria.filter(option => option.name.toLowerCase().includes(filterValue));
   }
 
   formatLabel(value: number) {
     return value + 'Bs';
   }
 
-}
-export interface User {
-  name: string;
-}
+  searchCategoria() {
+    this.filterForm.value.date_start = formatDate(this.filterForm.value.date_start, 'yyyy-MM-dd', 'en-US');
+    this.filterForm.value.date_end = formatDate(this.filterForm.value.date_end, 'yyyy-MM-dd', 'en-US');
+    this.filterOutput.emit(this.filterForm.value);
+  }
 
+  clear(){
+    this.filterForm = this.fb.group({
+      search: [''],
+      category: [''],
+      date_start: [''],
+      date_end: [''],
+      price_start: [''],
+    })
+  }
+}

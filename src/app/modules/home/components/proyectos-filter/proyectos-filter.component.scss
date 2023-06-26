@@ -4,11 +4,8 @@
     justify-content: center;
     align-items: center;
     padding: 40px;
-
-    .form-control {
-        width: 100%;
-        margin-bottom: 10px;
-    }
+    width: 900px;
+    margin: auto;
 
     .btn {
         width: 100%;
@@ -44,11 +41,10 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 mat-slider {
-    width: 250px;
+    width: 230px;
 }
 
 .example-result-card .example-label-container.example-label-horizontal {
@@ -62,4 +58,15 @@ mat-slider {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.btn-action {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.btn-action button {
+    margin-left: 10px;
 }

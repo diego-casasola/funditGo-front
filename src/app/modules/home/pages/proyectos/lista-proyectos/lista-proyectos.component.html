@@ -2,7 +2,7 @@
     <div class="container-proList">
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
-                <div class="card border-light">
+                <div class="card border-light" style="width: 18rem;">
                     <img src="../../../../../../assets/images/crowdfunding-flat-background-vector.png"
                         class="card-img-top square" alt="...">
                     <div class="card-body">
@@ -13,11 +13,11 @@
                         <h5 class="card-title">Card title</h5>
                         <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
                             additional content. This content is a little bit longer.</p>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button [ngClass]="{'isFavorite': isFavorite}" class="col-3 favorite" mat-raised-button type="button" (click)="saveFavorite()">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                            <button [ngClass]="{'isFavorite': isFavorite}" class="col-2 favorite" mat-raised-button type="button" (click)="saveFavorite()">
                                 <mat-icon>bookmark_border</mat-icon>
                             </button>
-                            <button class="col-sm-9 show" mat-raised-button type="button">Ver</button>
+                            <button class="col-sm-9 show" mat-raised-button type="button" [routerLink]="['/proyecto/5']">Ver</button>
                         </div>
                     </div>
                 </div>
