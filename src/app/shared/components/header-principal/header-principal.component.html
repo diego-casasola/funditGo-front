@@ -17,7 +17,8 @@
             </div>
         </div>
         <div class="login-link">
-            <a [routerLink]="['/auth/login']" routerLinkActive="active">Iniciar sesión</a>
+            <a *ngIf="false" [routerLink]="['/auth/login']" routerLinkActive="active">Iniciar sesión</a>
+            <app-menu-user *ngIf="true"></app-menu-user>
         </div>
     </div>
 </section>

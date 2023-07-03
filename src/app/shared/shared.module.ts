@@ -9,12 +9,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { MenuUserComponent } from './components/menu-user/menu-user.component';
 
 
 @NgModule({
   declarations: [
     HeaderPrincipalComponent,
-    FooterPrincipalComponent
+    FooterPrincipalComponent,
+    MenuUserComponent
   ],
   exports: [
     HeaderPrincipalComponent,

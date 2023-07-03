@@ -1,0 +1,16 @@
+<button mat-button [matMenuTriggerFor]="animals">Mi Perfil</button>
+<mat-menu #animals="matMenu" xPosition="before">
+  <button mat-menu-item [matMenuTriggerFor]="donador">Donador</button>
+  <button mat-menu-item [matMenuTriggerFor]="staff">Staff</button>
+  <button mat-menu-item>Cerrar Sesión</button>
+</mat-menu>
+
+<mat-menu #donador="matMenu" xPosition="before">
+  <button mat-menu-item>Mis Donaciones</button>
+  <button mat-menu-item>Guardados</button>
+</mat-menu>
+
+<mat-menu #staff="matMenu" xPosition="before">
+  <button mat-menu-item>Mis Proyectos</button>
+  <button mat-menu-item>Guardados</button>
+</mat-menu>

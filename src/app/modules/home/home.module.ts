@@ -15,6 +15,7 @@ import { ViewProyectoComponent } from './pages/proyectos/view-proyecto/view-proy
 import { DetallesProComponent } from './components/detalles-pro/detalles-pro.component';
 import { ActualizacionesProComponent } from './components/actualizaciones-pro/actualizaciones-pro.component';
 import { ComentariosProComponent } from './components/comentarios-pro/comentarios-pro.component';
+import { GestionProyectosComponent } from './pages/proyectos/gestion-proyectos/gestion-proyectos.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ComentariosProComponent } from './components/comentarios-pro/comentario
     ViewProyectoComponent,
     DetallesProComponent,
     ActualizacionesProComponent,
-    ComentariosProComponent
+    ComentariosProComponent,
+    GestionProyectosComponent
   ],
   imports: [
     CommonModule,
