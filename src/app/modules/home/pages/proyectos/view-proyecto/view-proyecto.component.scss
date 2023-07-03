@@ -1,0 +1,222 @@
+.header-proyecto {
+    width: 1400px;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.proyecto-img {
+    width: 1000px;
+    // borde difuminado suave
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+.proyecto-img img {
+    width: 100%;
+}
+
+.basic-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.custom-progress-color {
+    background-color: #F2CF63;
+    /* Color personalizado en hexadecimal */
+}
+
+.text-container {
+    margin-top: 20px;
+}
+
+.recaudado,
+.donantes-text,
+.dias-restantes {
+    /* Margen superior para los divs */
+    /* Por ejemplo: */
+    margin-top: 40px;
+}
+
+
+.recaudado span,
+.donantes-text span,
+.dias-restantes span {
+    color: #65A6A6;
+    font-size: 20px;
+}
+
+.recaudado p,
+.donantes-text p,
+.dias-restantes p {
+    font-size: 15px;
+}
+
+.card {
+    width: fit-content;
+    height: 530px;
+    padding: 15px;
+    // borde difuminado
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90px;
+}
+
+// change color of button
+.btn-donar {
+    background-color: #65A6A6;
+    border-color: #65A6A6;
+}
+
+.compartir {
+    background-color: #011140;
+    border-color: #011140;
+}
+
+.proyecto-ubi {
+    margin-top: 25px;
+}
+
+.proyecto-ubi p {
+    margin-top: 15px;
+    // alinaer todo horizontalmente
+    display: flex;
+    justify-content: start;
+}
+
+.info-completa {
+    display: flex;
+}
+
+.secciones {
+    flex: 70%;
+}
+
+.historial {
+    flex: 30%;
+}
+
+.historial-card {
+    width: 90%;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.user-info {
+    margin-top: 50px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid black;
+    /* Borde negro */
+    position: relative;
+    background-color: #ffffff;
+    /* Color de fondo del contenedor */
+}
+
+.user-info img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    position: absolute;
+    top: -35px;
+    left: calc(50% - 35px);
+    background-color: #ffffff;
+    object-fit: cover;
+}
+
+
+.user-info h2 {
+    margin-top: 30px;
+}
+
+.user-info span {
+    margin-top: -10px;
+}
+
+.historial-donacion {
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 20px;
+    background-color: #ffffff;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.historial-donacion .cantidad {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ffffff;
+    padding-bottom: 10px;
+}
+
+
+.historial-donacion .detalle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    /* Agregar un margen inferior entre usuarios */
+    border-bottom: 1px solid #000000;
+    /* Agregar una línea de separación */
+    padding-bottom: 10px;
+    /* Espacio entre la línea y el contenido del usuario */
+}
+
+.historial-donacion .detalle mat-icon {
+    margin-right: 5px;
+}
+
+.historial-donacion .detalle .donator-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.historial-donacion .detalle .donator-info span {
+    font-weight: bold;
+}
+
+.historial-donacion .detalle .donator-info p {
+    margin: 0;
+}
+
+.cantidad {
+    display: flex;
+    align-items: center;
+}
+
+.historial-donacion .cantidad mat-icon {
+    margin-right: 5px;
+}
+
+.detalle {
+    display: flex;
+    align-items: center;
+}
+
+.detalle mat-icon {
+    margin-right: 10px;
+}
+
+.detalle p {
+    margin-bottom: unset;
+}
+
+.buttons-historial{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.buttons-historial button{
+    border-color: #65A6A6;
+}

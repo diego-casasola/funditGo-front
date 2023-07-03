@@ -1,1 +1,92 @@
-<p>view-proyecto works!</p>
+<div class="header-proyecto">
+    <h1 class="titulo-proyecto">Título Proyecto</h1>
+    <div class="basic-info">
+        <div class="proyecto-img">
+            <img src="../../../../../../assets/images/crowdfunding-flat-background-vector.png" alt="img">
+        </div>
+        <div class="card">
+            <div class="card-body info">
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+                <div class="text-container">
+                    <div class="recaudado">
+                        <span>Bs.- 50000</span>
+                        <p>recaudado de Bs.- 100000 como objetivo</p>
+                    </div>
+                    <div class="donantes-text">
+                        <span>250</span>
+                        <p>donantes</p>
+                    </div>
+                    <div class="dias-restantes">
+                        <span>36</span>
+                        <p>días restantes</p>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="btn btn-primary btn-donar">Donar a este proyecto</button>
+                <button class="btn btn-primary compartir">Compartir</button>
+            </div>
+        </div>
+    </div>
+    <div class="proyecto-ubi">
+        <span>Usuario-1 esta organizando este proyecto para recaudación de beneficio social</span>
+        <p>Creado hace 1 día | <mat-icon>place</mat-icon> Santa Cruz de la Sierra, Bolivia </p>
+    </div>
+    <div class="info-completa">
+        <div class="secciones">
+            <mat-tab-group>
+                <mat-tab label="Detalles">
+                    <app-detalles-pro></app-detalles-pro>
+                </mat-tab>
+                <mat-tab label="Actualizaciones">
+                    <app-actualizaciones-pro></app-actualizaciones-pro>
+                </mat-tab>
+                <mat-tab label="Comentarios">
+                    <app-comentarios-pro></app-comentarios-pro>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+        <div class="historial">
+            <div class="card historial-card">
+                <div class="user-info">
+                    <img src="../../../../../../assets/images/funditgo_logo1_stroke.png" alt="Imagen de perfil">
+                    <h2>Usuario-1</h2>
+                    <span>Creador del proyecto</span>
+                </div>
+                <div class="historial-donacion">
+                    <div class="cantidad">
+                        <mat-icon>trending_up</mat-icon>
+                        <span>150 personas donaron</span>
+                    </div>
+                    <div class="recent-donaciones">
+                        <div class="detalle">
+                            <mat-icon>attach_money</mat-icon>
+                            <div class="donator-info">
+                                <span>Bs.- 100</span>
+                                <p>-Usuario2</p>
+                            </div>
+                        </div>
+                        <div class="detalle">
+                            <mat-icon>attach_money</mat-icon>
+                            <div class="donator-info">
+                                <span>Bs.- 100</span>
+                                <p>-Usuario2</p>
+                            </div>
+                        </div>
+                        <div class="detalle">
+                            <mat-icon>attach_money</mat-icon>
+                            <div class="donator-info">
+                                <span>Bs.- 100</span>
+                                <p>-Usuario2</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons-historial">
+                        <button class="btn">Donar a este proyecto</button>
+                        <button class="btn">Compartir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

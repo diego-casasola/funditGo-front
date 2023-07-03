@@ -12,6 +12,9 @@ import { ProyectosFilterComponent } from './components/proyectos-filter/proyecto
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { ViewProyectoComponent } from './pages/proyectos/view-proyecto/view-proyecto.component';
+import { DetallesProComponent } from './components/detalles-pro/detalles-pro.component';
+import { ActualizacionesProComponent } from './components/actualizaciones-pro/actualizaciones-pro.component';
+import { ComentariosProComponent } from './components/comentarios-pro/comentarios-pro.component';
 
 
 @NgModule({
@@ -20,7 +23,10 @@ import { ViewProyectoComponent } from './pages/proyectos/view-proyecto/view-proy
     ListaProyectosComponent,
     BuscadorComponent,
     ProyectosFilterComponent,
-    ViewProyectoComponent
+    ViewProyectoComponent,
+    DetallesProComponent,
+    ActualizacionesProComponent,
+    ComentariosProComponent
   ],
   imports: [
     CommonModule,
