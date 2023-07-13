@@ -1,48 +1,49 @@
 <div class="header-proyecto">
-    <h1 class="titulo-proyecto">Título Proyecto</h1>
+    <h1 class="titulo-proyecto">{{proyecto.titulo}}</h1>
     <div class="basic-info">
         <div class="proyecto-img">
             <img src="../../../../../../assets/images/crowdfunding-flat-background-vector.png" alt="img">
         </div>
         <div class="card">
             <div class="card-body info">
-                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+                <mat-progress-bar mode="determinate" value="{{proyecto.porcentajeDonaciones}}"></mat-progress-bar>
                 <div class="text-container">
                     <div class="recaudado">
-                        <span>Bs.- 50000</span>
-                        <p>recaudado de Bs.- 100000 como objetivo</p>
+                        <span>Bs.- {{proyecto.donacionRecibida}}</span>
+                        <p>recaudado de Bs.- {{proyecto.donacionEsperada}} como objetivo</p>
                     </div>
                     <div class="donantes-text">
-                        <span>250</span>
+                        <span>{{proyecto.cantidadDonaciones}}</span>
                         <p>donantes</p>
                     </div>
-                    <div class="dias-restantes">
+                    <!-- <div class="dias-restantes">
                         <span>36</span>
                         <p>días restantes</p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="buttons">
-                <button class="btn btn-primary btn-donar">Donar a este proyecto</button>
+                <button class="btn btn-primary btn-donar" (click)="openDonation()">Donar a este proyecto</button>
                 <button class="btn btn-primary compartir">Compartir</button>
             </div>
         </div>
     </div>
     <div class="proyecto-ubi">
-        <span>Usuario-1 esta organizando este proyecto para recaudación de beneficio social</span>
+        <span>{{proyecto.creador.nombreCompleto}} esta organizando este proyecto para recaudación de
+            {{proyecto.tipo.nombre}}</span>
         <p>Creado hace 1 día | <mat-icon>place</mat-icon> Santa Cruz de la Sierra, Bolivia </p>
     </div>
     <div class="info-completa">
         <div class="secciones">
             <mat-tab-group>
                 <mat-tab label="Detalles">
-                    <app-detalles-pro></app-detalles-pro>
+                    <app-detalles-pro [DESCRIPCION]="proyecto.descripcion" [HISTORIA]="proyecto.historia" [COMPROMISO]="proyecto.compromisoAmbiental"></app-detalles-pro>
                 </mat-tab>
                 <mat-tab label="Actualizaciones">
-                    <app-actualizaciones-pro></app-actualizaciones-pro>
+                    <app-actualizaciones-pro [ACTUALIZACIONES]="proyecto.actualizaciones"></app-actualizaciones-pro>
                 </mat-tab>
                 <mat-tab label="Comentarios">
-                    <app-comentarios-pro></app-comentarios-pro>
+                    <app-comentarios-pro [COMENTARIOS]="proyecto.comentarios"></app-comentarios-pro>
                 </mat-tab>
             </mat-tab-group>
         </div>
@@ -50,36 +51,26 @@
             <div class="card historial-card">
                 <div class="user-info">
                     <img src="../../../../../../assets/images/funditgo_logo1_stroke.png" alt="Imagen de perfil">
-                    <h2>Usuario-1</h2>
+                    <h2>{{proyecto.creador.nombreCompleto}}</h2>
                     <span>Creador del proyecto</span>
                 </div>
                 <div class="historial-donacion">
                     <div class="cantidad">
                         <mat-icon>trending_up</mat-icon>
-                        <span>150 personas donaron</span>
+                        <span>{{proyecto.cantidadDonaciones}} personas donaron</span>
                     </div>
                     <div class="recent-donaciones">
-                        <div class="detalle">
-                            <mat-icon>attach_money</mat-icon>
-                            <div class="donator-info">
-                                <span>Bs.- 100</span>
-                                <p>-Usuario2</p>
+                        <div *ngIf="proyecto.donaciones.length > 0; else nohay">
+                        <ng-container *ngFor="let item of proyecto.donaciones">
+                            <div class="detalle">
+                                <mat-icon>attach_money</mat-icon>
+                                <div class="donator-info">
+                                    <span>Bs.- {{item.monto}}</span>
+                                    <p>-{{item.usuario.userName}}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="detalle">
-                            <mat-icon>attach_money</mat-icon>
-                            <div class="donator-info">
-                                <span>Bs.- 100</span>
-                                <p>-Usuario2</p>
-                            </div>
-                        </div>
-                        <div class="detalle">
-                            <mat-icon>attach_money</mat-icon>
-                            <div class="donator-info">
-                                <span>Bs.- 100</span>
-                                <p>-Usuario2</p>
-                            </div>
-                        </div>
+                        </ng-container>
+                    </div>
                     </div>
                     <div class="buttons-historial">
                         <button class="btn">Donar a este proyecto</button>
@@ -89,4 +80,8 @@
             </div>
         </div>
     </div>
+
+    <ng-template #nohay>
+        No Hay Donaciones
+    </ng-template>
 </div>

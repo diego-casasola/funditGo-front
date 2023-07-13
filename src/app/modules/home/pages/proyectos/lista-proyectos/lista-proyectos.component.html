@@ -1,27 +1,33 @@
 <section class="lista-proyectos-component">
-    <div class="container-proList">
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="card border-light" style="width: 18rem;">
-                    <img src="../../../../../../assets/images/crowdfunding-flat-background-vector.png"
-                        class="card-img-top square" alt="...">
-                        <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
-                    <div class="card-body">
-                        <div class="info-min">
-                            <span class="date">Abril 04, 2023</span>
-                            <span class="cant-don">230 donaciones</span>
-                        </div>
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                            <button [ngClass]="{'isFavorite': isFavorite}" class="col-2 favorite" mat-raised-button type="button" (click)="saveFavorite()">
-                                <mat-icon>bookmark_border</mat-icon>
-                            </button>
-                            <button class="col-sm-9 show" mat-raised-button type="button" [routerLink]="['/proyecto/3fa85f64-5717-4562-b3fc-2c963f66afa6']">Ver</button>
+    <div *ngIf="listaProyectos.length > 0; else nohay">
+        <div class="container-proList">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <ng-container *ngFor="let item of listaProyectos">
+                    <div class="col">
+                        <div class="card border-light" style="width: 18rem;">
+                            <img src="../../../../../../assets/images/crowdfunding-flat-background-vector.png"
+                                class="card-img-top square" alt="...">
+                            <mat-progress-bar mode="determinate" value="{{item.porcentajeDonaciones}}"></mat-progress-bar>
+                            <div class="card-body">
+                                <div class="info-min">
+                                    <span class="date">{{ item.fechaCreacion | date:'MMMM dd, yyyy' }}</span>
+                                    <span class="cant-don">{{item.cantidadDonaciones == 0? 'Sin donaciones':
+                                        item.cantidadDonaciones + ' donaciones'}}</span>
+                                </div>
+                                <h5 class="card-title">{{item.titulo}}</h5>
+                                <p class="card-text">{{item.descripcion}}</p>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                    <button [ngClass]="{'isFavorite': isProyectoFavorito(item.id)}" class="col-2 favorite"
+                                        mat-raised-button type="button" (click)="saveFavorite(item.id)">
+                                        <mat-icon>bookmark_border</mat-icon>
+                                    </button>
+                                    <button class="col-sm-9 show" mat-raised-button type="button"
+                                        [routerLink]="['/proyecto/' + item.id]">Ver Proyecto</button> 
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </ng-container>
             </div>
         </div>
     </div>
@@ -29,4 +35,8 @@
     <mat-paginator [length]="lengthTable" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
         (page)="pageEvent = $event; onPaginateChange($event)" showFirstLastButtons="true">
     </mat-paginator>
+
+    <ng-template #nohay>
+        No Hay
+    </ng-template>
 </section>

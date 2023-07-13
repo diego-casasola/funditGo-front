@@ -16,6 +16,8 @@ import { DetallesProComponent } from './components/detalles-pro/detalles-pro.com
 import { ActualizacionesProComponent } from './components/actualizaciones-pro/actualizaciones-pro.component';
 import { ComentariosProComponent } from './components/comentarios-pro/comentarios-pro.component';
 import { GestionProyectosComponent } from './pages/proyectos/gestion-proyectos/gestion-proyectos.component';
+import { DonacionModalComponent } from './components/modals/donacion-modal/donacion-modal.component';
+import { PagoComponent } from './pages/pago/pago.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { GestionProyectosComponent } from './pages/proyectos/gestion-proyectos/g
     DetallesProComponent,
     ActualizacionesProComponent,
     ComentariosProComponent,
-    GestionProyectosComponent
+    GestionProyectosComponent,
+    DonacionModalComponent,
+    PagoComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +42,7 @@ import { GestionProyectosComponent } from './pages/proyectos/gestion-proyectos/g
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    AutocompleteLibModule
+    AutocompleteLibModule,
   ]
 })
 export class HomeModule { }

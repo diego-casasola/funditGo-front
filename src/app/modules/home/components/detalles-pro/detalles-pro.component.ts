@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-detalles-pro',
@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detalles-pro.component.scss']
 })
 export class DetallesProComponent implements OnInit {
+  @Input('DESCRIPCION') descripcion: any;
+  @Input('HISTORIA') historia: any;
+  @Input('COMPROMISO') compromiso: any;
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.descripcion);
+    console.log(this.historia);
+    console.log(this.compromiso);
   }
 
 }

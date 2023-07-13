@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PrincipalComponent } from './modules/principal/principal.component';
+import { CurrentUserResolver } from './shared/resolvers/current-user.resolver';
+// import { resolve } from 'dns';
 
 const routes: Routes = [
   {
     path:'',
     component: PrincipalComponent,
-    loadChildren: () => import('./modules/modules.module').then(m => m.ModulesModule)
+    loadChildren: () => import('./modules/modules.module').then(m => m.ModulesModule),
+    resolve: {
+      currentUser: CurrentUserResolver
+    }
   },
   {
     path:'auth',

@@ -1,13 +1,79 @@
 <div class="container">
     <mat-stepper #stepper>
-        <mat-step>Hola
-            <ng-template matStepLabel>Datos Básicos</ng-template>
+        <mat-step label="Información Básica" [stepControl]="formProyecto">
+            <form [formGroup]="formProyecto">
+                <div>
+                    <label for="titulo" class="form-label">
+                        Título de Proyecto:
+                    </label>
+                    <input type="text" class="form-control" id="titulo" placeholder="Ingrese el título del proyecto"
+                        required formControlName="titulo">
+                </div>
+                <div>
+                    <label for="descripcion" class="form-label">
+                        Descripción:
+                    </label>
+                    <textarea class="form-control" id="descripcion" rows="3"
+                        placeholder="Ingrese la descripción del proyecto" required
+                        formControlName="descripcion"></textarea>
+                </div>
+                <div>
+                    <label for="historia" class="form-label">
+                        Historia:
+                    </label>
+                    <textarea class="form-control" id="historia" rows="3" placeholder="Ingrese la historia del proyecto"
+                        required formControlName="historia"></textarea>
+                </div>
+                <div>
+                    <label for="compromisoAmbiental" class="form-label">
+                        Compromiso Ambiental:
+                    </label>
+                    <textarea class="form-control" id="compromisoAmbiental" rows="3"
+                        placeholder="Ingrese el compromiso ambiental del proyecto" required
+                        formControlName="compromisoAmbiental"></textarea>
+                </div>
+                <div>
+                    <label for="tipoproyectoId" class="form-label">
+                        Tipo de Proyecto:
+                    </label>
+                    <select class="form-select" id="tipoproyectoId" required formControlName="tipoproyectoId">
+                        <option disabled selected value="">Seleccionar Tipo Proyecto</option>
+                        <option *ngFor="let tipoProyecto of tiposProyecto" [value]="tipoProyecto.id">
+                            {{ tipoProyecto.nombre }}
+                        </option>
+                    </select>
+                </div>
+            </form>
+            <div class="group-btn">
+                <button mat-raised-button matStepperNext>Siguiente</button>
+            </div>
         </mat-step>
-        <mat-step>2
+        <!-- <mat-step>2
             <ng-template matStepLabel>Requerimientos</ng-template>
-        </mat-step>
-        <mat-step>3
-            <ng-template matStepLabel>Meta de Financiación</ng-template>
+        </mat-step> -->
+        <mat-step label="Meta de Financiación" [stepControl]="formProyecto">
+            <form [formGroup]="formProyecto">
+                <div>
+                    <label for="donacionEsperada" class="form-label">
+                        Meta de Financiación:
+                    </label>
+                    <input type="number" class="form-control" id="donacionEsperada"
+                        placeholder="Ingrese la meta de financiación del proyecto" required
+                        formControlName="donacionEsperada">
+                </div>
+                <div>
+                    <label for="donacionMinima" class="form-label">
+                        Mínimo de donación por usuario:
+                    </label>
+                    <input type="number" class="form-control" id="donacionMinima"
+                        placeholder="Ingrese lo mínimo que un usuario puede donar" required
+                        formControlName="donacionMinima">
+                </div>
+            </form>
+            <div class="group-btn">
+                <button mat-raised-button matStepperPrevious>Anterior</button>
+                <button mat-raised-button (click)="guardar()" [disabled]="!formProyecto.valid">Guardar</button>
+            </div>
         </mat-step>
     </mat-stepper>
 </div>

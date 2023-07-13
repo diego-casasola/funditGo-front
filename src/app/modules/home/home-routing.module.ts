@@ -4,6 +4,7 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { BuscadorComponent } from './pages/buscador/buscador.component';
 import { ViewProyectoComponent } from './pages/proyectos/view-proyecto/view-proyecto.component';
 import { GestionProyectosComponent } from './pages/proyectos/gestion-proyectos/gestion-proyectos.component';
+import { PagoComponent } from './pages/pago/pago.component';
 
 const routes: Routes = [{
   path: '',
@@ -14,7 +15,7 @@ const routes: Routes = [{
   component: BuscadorComponent,
 },
 {
-  path: 'proyecto/:id',
+  path: 'proyecto/:proyectoId',
   component: ViewProyectoComponent,
 },
 {
@@ -22,8 +23,8 @@ const routes: Routes = [{
   component: GestionProyectosComponent,
 },
 {
-  path: '**',
-  redirectTo: '',
+  path: 'pago/pasarela/:pagoId',
+  component: PagoComponent,
 }
 ];
 

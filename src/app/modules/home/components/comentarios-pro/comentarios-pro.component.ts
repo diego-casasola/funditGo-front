@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-comentarios-pro',
@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comentarios-pro.component.scss']
 })
 export class ComentariosProComponent implements OnInit {
+  @Input('COMENTARIOS') comentarios!: any[];
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.comentarios);
+  }
+
+  openComentar(){
+    console.log('Comentar');
   }
 
 }

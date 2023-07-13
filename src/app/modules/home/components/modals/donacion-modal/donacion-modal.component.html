@@ -1,0 +1,26 @@
+<h2 class="header-dialog fw-bold" mat-dialog-title>
+    <span>Donación</span>
+    <button mat-icon-button (click)="dialog_ref.close()">
+        <mat-icon>cancel</mat-icon>
+    </button>
+</h2>
+
+<mat-dialog-content>
+    <div class="donacion-form">
+        <span class="donacion-minima">Su monto mínimo de donación debe ser {{ data.donacionMinima }}</span>
+        <mat-form-field appearance="outline" class="monto-donacion-field">
+            <mat-label>Monto de donación</mat-label>
+            <input matInput type="number" placeholder="Ingrese el monto de donación" [(ngModel)]="montoDonacion"
+                required>
+            <mat-error *ngIf="montoDonacion < data.donacionMinima">
+                El monto mínimo de donación es {{ data.donacionMinima }}
+            </mat-error>
+        </mat-form-field>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close class="cancel-button">Cancelar</button>
+    <button [disabled]="montoDonacion < data.donacionMinima || montoDonacion == undefined" (click)="donar()"
+        mat-raised-button color="primary" class="aceptar-button">Aceptar</button>
+</mat-dialog-actions>

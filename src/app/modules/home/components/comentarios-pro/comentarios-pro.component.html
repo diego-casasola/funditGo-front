@@ -1,1 +1,17 @@
-<p>comentarios-pro works!</p>
+<section>
+    <div class="comentarios-header">
+        <h2 class="comentarios-title">COMENTARIOS</h2>
+        <button class="comentar-btn" (click)="openComentar()" mat-raised-button>Comentar</button>
+    </div>
+    <div *ngIf="comentarios.length > 0; else nohay">
+        <ng-container *ngFor="let comentario of comentarios">
+            <div class="comentario">
+                <div class="usuario">Comentado por: {{ comentario.usuario.nombreCompleto }}</div>
+                <div class="texto">{{ comentario.texto }}</div>
+            </div>
+        </ng-container>
+    </div>
+    <ng-template #nohay>
+        No Hay Comentarios
+    </ng-template>
+</section>

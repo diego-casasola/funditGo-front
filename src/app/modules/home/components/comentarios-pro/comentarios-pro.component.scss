@@ -1,0 +1,44 @@
+section {
+    margin-top: 20px;
+}
+
+.comentarios-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.comentarios-title {
+    font-size: 24px;
+    color: #011140;
+}
+
+.comentario {
+    background-color: #F2F0EB;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.usuario {
+    font-size: 14px;
+    font-weight: bold;
+    color: #011140;
+    margin-bottom: 5px;
+}
+
+.texto {
+    font-size: 16px;
+    color: #7B7D8C;
+}
+
+.comentar-btn {
+    background-color: #65A6A6;
+    color: white;
+}
+
+.comentar {
+    background-color: #65A6A6;
+    color: white;
+}
