@@ -25,6 +25,7 @@
             <div class="buttons">
                 <button class="btn btn-primary btn-donar" (click)="openDonation()">Donar a este proyecto</button>
                 <button class="btn btn-primary compartir">Compartir</button>
+                <button *ngIf="user.is_staff && proyecto.estado == 'Revision'" class="btn btn-primary btn-aceptar" (click)="aceptarProyecto()">Aceptar</button>
             </div>
         </div>
     </div>
@@ -37,7 +38,8 @@
         <div class="secciones">
             <mat-tab-group>
                 <mat-tab label="Detalles">
-                    <app-detalles-pro [DESCRIPCION]="proyecto.descripcion" [HISTORIA]="proyecto.historia" [COMPROMISO]="proyecto.compromisoAmbiental"></app-detalles-pro>
+                    <app-detalles-pro [DESCRIPCION]="proyecto.descripcion" [HISTORIA]="proyecto.historia"
+                        [COMPROMISO]="proyecto.compromisoAmbiental"></app-detalles-pro>
                 </mat-tab>
                 <mat-tab label="Actualizaciones">
                     <app-actualizaciones-pro [ACTUALIZACIONES]="proyecto.actualizaciones"></app-actualizaciones-pro>
@@ -61,16 +63,16 @@
                     </div>
                     <div class="recent-donaciones">
                         <div *ngIf="proyecto.donaciones.length > 0; else nohay">
-                        <ng-container *ngFor="let item of proyecto.donaciones">
-                            <div class="detalle">
-                                <mat-icon>attach_money</mat-icon>
-                                <div class="donator-info">
-                                    <span>Bs.- {{item.monto}}</span>
-                                    <p>-{{item.usuario.userName}}</p>
+                            <ng-container *ngFor="let item of proyecto.donaciones">
+                                <div class="detalle">
+                                    <mat-icon>attach_money</mat-icon>
+                                    <div class="donator-info">
+                                        <span>Bs.- {{item.monto}}</span>
+                                        <p>-{{item.usuario.userName}}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </ng-container>
-                    </div>
+                            </ng-container>
+                        </div>
                     </div>
                     <div class="buttons-historial">
                         <button class="btn">Donar a este proyecto</button>

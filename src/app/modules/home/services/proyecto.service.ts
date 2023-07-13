@@ -40,7 +40,7 @@ export class ProyectoService {
     return this.http.get<RProyecto>(url);
   }
 
-  agregarFavorito(id: string, userId: string){
+  agregarFavorito(id: string, userId: string) {
     const url = `${this.baseUrl}/usuario/favorito`;
     const body = {
       proyectoId: id,
@@ -49,7 +49,7 @@ export class ProyectoService {
     return this.http.post<any>(url, body);
   }
 
-  eliminarFavorito(id: string, userId: string){
+  eliminarFavorito(id: string, userId: string) {
     const url = `${this.baseUrl}/usuario/favorito`;
     const body = {
       proyectoFavoritoId: id,
@@ -58,7 +58,7 @@ export class ProyectoService {
     return this.http.delete<any>(url, { body });
   }
 
-  crearDonacion(proyectoId: string, usuarioId: string, monto: number){
+  crearDonacion(proyectoId: string, usuarioId: string, monto: number) {
     const url = `${this.baseUrl}/proyecto/donacion`;
     const body = {
       proyectoId,
@@ -72,18 +72,42 @@ export class ProyectoService {
     return this.http.post<any>(url, body, { headers });
   }
 
-  getQrPago(id: string){
+  getQrPago(id: string) {
     const url = `${this.baseUrl}/pago/image/qr/${id}`;
     return this.http.get<any[]>(url);
   }
 
-  getPagoById(id: string){
+  getPagoById(id: string) {
     const url = `${this.baseUrl}/pago/${id}`;
     return this.http.get<any>(url);
   }
 
-  getTipoProyectos(){
+  getTipoProyectos() {
     const url = `${this.baseUrl}/tipoProyecto`;
     return this.http.get<any[]>(url);
+  }
+
+  filterProyectos(page: number, size: number, data: any): Observable<Paginacion> {
+    const url = `${this.baseUrl}/proyecto/buscar?Page=${page}&PageSize=${size}&estado=${data.estado}`;
+    return this.http.get<Paginacion>(url);
+  }
+
+  aceptarProyecto(id: string) {
+    const url = `${this.baseUrl}/proyecto/aceptar`;
+    const headers = {
+      Authorization: `Bearer ${this.authService.accessToken}`,
+    }
+    const data = {
+      proyectoId: id
+    }
+    return this.http.put<any>(url, data, { headers });
+  }
+
+  donar(id: string){
+    const url = `${this.baseUrl}/pago/${id}`;
+    const data = {
+      idPago: id
+    }
+    return this.http.put<any>(url, data);
   }
 }

@@ -6,7 +6,7 @@ export interface User{
     user_id: string;
     nombre: string;
     username: string;
-    is_staff: boolean;
+    is_staff: string;
     permisos: Permisos[];
 }
 

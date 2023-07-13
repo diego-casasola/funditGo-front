@@ -59,7 +59,7 @@ export class GestionProyectosComponent implements OnInit {
           (resp: any) => {
             Swal.close();
             setTimeout(() => {
-              this.route.navigate(['/proyectos/view/' + resp.id]);
+              this.route.navigate(['/proyecto/' + resp]);
             }, 500);
           },
           (_) => {

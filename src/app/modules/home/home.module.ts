@@ -18,6 +18,7 @@ import { ComentariosProComponent } from './components/comentarios-pro/comentario
 import { GestionProyectosComponent } from './pages/proyectos/gestion-proyectos/gestion-proyectos.component';
 import { DonacionModalComponent } from './components/modals/donacion-modal/donacion-modal.component';
 import { PagoComponent } from './pages/pago/pago.component';
+import { ProyectosRevisionComponent } from './pages/admin/proyectos-revision/proyectos-revision.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { PagoComponent } from './pages/pago/pago.component';
     ComentariosProComponent,
     GestionProyectosComponent,
     DonacionModalComponent,
-    PagoComponent
+    PagoComponent,
+    ProyectosRevisionComponent
   ],
   imports: [
     CommonModule,

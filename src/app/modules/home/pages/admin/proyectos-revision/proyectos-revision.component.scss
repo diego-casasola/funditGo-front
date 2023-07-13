@@ -1,0 +1,67 @@
+.lista-proyectos-component {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-min {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.container-proList {
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.card {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.favorite {
+    border: 1px solid #65A6A6;
+    background-color: unset;
+    color: #65A6A6;
+}
+
+.favorite.isFavorite{
+    border: 1px solid #65A6A6;
+    background-color: #65A6A6;
+    color: white;
+}
+
+.show{
+    border: 1px solid #65A6A6;
+    background-color: #65A6A6;
+    color: white;
+}
+
+.date {
+    color: #999CA9;
+}
+
+.card-title {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #011140;
+}
+
+.card-text {
+    margin-top: 10px;
+    font-size: 15px;
+    color: #7B7D8C;
+}
+
+.cant-don {
+    color: #65A6A6;
+}
+
+.mat-paginator {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: #F2F0EB;
+}

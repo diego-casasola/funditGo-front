@@ -2,7 +2,7 @@
   <button mat-button [matMenuTriggerFor]="is_staff">Mi Perfil</button>
   <mat-menu #is_staff="matMenu" xPosition="before">
     <button mat-menu-item>Peticiones de actualización</button>
-    <button mat-menu-item>Peticiones de proyectos</button>
+    <button mat-menu-item [routerLink]="['proyectos/revision']">Peticiones de proyectos</button>
     <button mat-menu-item>Lista de usuarios</button>
     <button mat-menu-item (click)="logout()">Cerrar Sesión</button>
   </mat-menu>

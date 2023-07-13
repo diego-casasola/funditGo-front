@@ -46,4 +46,12 @@ export class PagoComponent implements OnInit {
       (err) => { console.log(err); }
     );
   }
+
+  donar() {
+    this.proyectoService.donar(this.pagoId).subscribe(
+      (resp: any) => {
+        window.location.href = '/';
+      }
+    );
+  }
 }

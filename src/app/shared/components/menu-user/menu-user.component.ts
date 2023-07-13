@@ -23,7 +23,7 @@ export class MenuUserComponent implements OnInit {
   }
 
   muestra(){
-    if (this.user.is_staff == true){
+    if (this.user.is_staff == 'True'){
       return true;
     } else {
       return false;
