@@ -1,3 +1,24 @@
-.detalles-con{
+.container {
+    margin: 0 auto;
+}
+
+.detalles-con {
     padding: 20px;
+}
+
+.descripcion-proyecto,
+.historia-proyecto,
+.compromiso-ambiental {
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 24px;
+    color: #011140;
+}
+
+p {
+    font-size: 16px;
+    color: #7B7D8C;
+    line-height: 1.5;
 }

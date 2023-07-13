@@ -1,1 +1,15 @@
-<p>actualizaciones-pro works!</p>
+<section>
+    <div *ngIf="actualizaciones.length > 0; else nohay">
+        <div *ngFor="let actualizacion of actualizaciones">
+            <div class="actualizacion">
+                <div class="fecha">{{ actualizacion.fecha | date:'MMMM dd, yyyy' }}</div>
+                <div class="descripcion">{{ actualizacion.descripcion }}</div>
+                <div class="usuario">Actualización hecha por: {{ actualizacion.usuario.nombreCompleto }}</div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #nohay>
+        No Hay Actualizaciones
+    </ng-template>
+</section>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-actualizaciones-pro',
@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./actualizaciones-pro.component.scss']
 })
 export class ActualizacionesProComponent implements OnInit {
+  @Input('ACTUALIZACIONES') actualizaciones!: any[];
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.actualizaciones);
   }
 
 }

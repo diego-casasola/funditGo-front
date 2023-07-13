@@ -1,0 +1,34 @@
+.header-dialog {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-dialog button {
+    margin-left: 10px;
+}
+
+.donacion-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.donacion-minima {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.monto-donacion-field {
+    width: 100%;
+}
+
+.cancel-button {
+    margin-right: 10px;
+}
+
+.aceptar-button {
+    background-color: #007bff;
+    color: #fff;
+}

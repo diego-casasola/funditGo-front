@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-menu-user',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuUserComponent implements OnInit {
 
-  constructor() { }
+  user = this.authService.usuario;
+
+  constructor(
+    public authService: AuthService,
+  ) { }
 
   ngOnInit(): void {
+    console.log(this.user.is_staff);
   }
 
+  logout(){
+    this.authService.logout();
+  }
+
+  muestra(){
+    if (this.user.is_staff == 'True'){
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

@@ -17,8 +17,9 @@
             </div>
         </div>
         <div class="login-link">
-            <a *ngIf="false" [routerLink]="['/auth/login']" routerLinkActive="active">Iniciar sesión</a>
-            <app-menu-user *ngIf="true"></app-menu-user>
+            <span *ngIf="verifyUser()">Bienvenido {{nombreCompleto}}</span>
+            <a *ngIf="!verifyUser()" [routerLink]="['/auth/login']" routerLinkActive="active">Iniciar sesión</a>
+            <app-menu-user *ngIf="verifyUser()"></app-menu-user>
         </div>
     </div>
 </section>
