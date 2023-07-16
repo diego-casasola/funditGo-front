@@ -11,7 +11,7 @@ export interface User{
 }
 
 export interface ShortUser{
-    user_id: string;
+    id: string;
     nombreCompleto: string;
     username: string;
 }

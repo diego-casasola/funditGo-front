@@ -1,6 +1,45 @@
 <section>
     <app-proyectos-filter (PROYECTO-FILTER)="buscar($event)"></app-proyectos-filter>
-    <article class="lista-proyectos">
-        <app-lista-proyectos></app-lista-proyectos>
-    </article>
+    <section class="lista-proyectos-component">
+        <div *ngIf="proyectosEncontrados.length > 0; else nohay">
+            <div class="container-proList">
+                <div class="row cards-container">
+                    <ng-container *ngFor="let item of proyectosEncontrados">
+                        <div class="col">
+                            <div class="card border-light mt-4" style="width: 18rem;">
+                                <img src="../../../../../../assets/images/crowdfunding-flat-background-vector.png"
+                                    class="card-img-top square" alt="...">
+                                <mat-progress-bar mode="determinate" value="{{item.porcentajeDonaciones}}"></mat-progress-bar>
+                                <div class="card-body">
+                                    <div class="info-min">
+                                        <span class="date">{{ item.fechaCreacion | date:'MMMM dd, yyyy' }}</span>
+                                        <span class="cant-don">{{item.cantidadDonaciones == 0? 'Sin donaciones':
+                                            item.cantidadDonaciones + ' donaciones'}}</span>
+                                    </div>
+                                    <h5 class="card-title">{{item.titulo}}</h5>
+                                    <p class="card-text">{{item.descripcion}}</p>
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                        <button [ngClass]="{'isFavorite': isProyectoFavorito(item.id)}" class="col-2 favorite"
+                                            mat-raised-button type="button" (click)="saveFavorite(item.id)">
+                                            <mat-icon>bookmark_border</mat-icon>
+                                        </button>
+                                        <button class="col-sm-9 show" mat-raised-button type="button"
+                                            [routerLink]="['/proyecto/' + item.id]">Ver Proyecto</button> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    
+        <mat-paginator [length]="lengthTable" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+            (page)="pageEvent = $event; onPaginateChange($event)" showFirstLastButtons="true">
+        </mat-paginator>
+    
+        <ng-template #nohay>
+            No Hay
+        </ng-template>
+    </section>
 </section>

@@ -1,10 +1,10 @@
 <section class="lista-proyectos-component">
     <div *ngIf="listaProyectos.length > 0; else nohay">
         <div class="container-proList">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="row cards-container">
                 <ng-container *ngFor="let item of listaProyectos">
                     <div class="col">
-                        <div class="card border-light" style="width: 18rem;">
+                        <div class="card border-light mt-4" style="width: 18rem;">
                             <img src="../../../../../../assets/images/crowdfunding-flat-background-vector.png"
                                 class="card-img-top square" alt="...">
                             <mat-progress-bar mode="determinate" value="{{item.porcentajeDonaciones}}"></mat-progress-bar>

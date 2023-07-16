@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Proyecto, ProyectoFavorito, RProyecto } from '../../../interfaces/proyecto.interface';
 import { ProyectoService } from '../../../services/proyecto.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { map, switchMap, tap } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-lista-proyectos',
@@ -11,6 +12,7 @@ import { map, switchMap, tap } from 'rxjs/operators';
   styleUrls: ['./lista-proyectos.component.scss']
 })
 export class ListaProyectosComponent implements OnInit {
+  @Input('SEARCH') listaProyectosBuscados: Proyecto[] = [];
 
   pageEvent!: PageEvent;
   lengthTable: number = 10;
@@ -64,6 +66,13 @@ export class ListaProyectosComponent implements OnInit {
           )
           .subscribe();
       }
+    } else {
+      Swal.fire({
+        title: 'Debe iniciar sesión',
+        text: 'Para poder agregar a favoritos debe iniciar sesión',
+        icon: 'warning',
+        confirmButtonText: 'Aceptar'
+      });
     }
   }
 

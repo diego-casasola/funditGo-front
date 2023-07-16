@@ -48,9 +48,6 @@
                 <button mat-raised-button matStepperNext>Siguiente</button>
             </div>
         </mat-step>
-        <!-- <mat-step>2
-            <ng-template matStepLabel>Requerimientos</ng-template>
-        </mat-step> -->
         <mat-step label="Meta de Financiación" [stepControl]="formProyecto">
             <form [formGroup]="formProyecto">
                 <div>
@@ -74,6 +71,9 @@
                 <button mat-raised-button matStepperPrevious>Anterior</button>
                 <button mat-raised-button (click)="guardar()" [disabled]="!formProyecto.valid">Guardar</button>
             </div>
+        </mat-step>
+        <mat-step>2
+            <ng-template matStepLabel>Requerimientos</ng-template>
         </mat-step>
     </mat-stepper>
 </div>

@@ -15,7 +15,6 @@ export class MenuUserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.user.is_staff);
   }
 
   logout(){

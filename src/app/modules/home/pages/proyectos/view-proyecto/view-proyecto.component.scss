@@ -63,7 +63,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 140px;
+}
+
+.buttons button {
+    margin-top: 10px;
 }
 
 // change color of button
@@ -219,4 +222,14 @@
 
 .buttons-historial button{
     border-color: #65A6A6;
+}
+
+.btn-aceptar{
+    background-color: #65A6A6;
+    border-color: #65A6A6;
+}
+
+.btn-rechazar{
+    background-color: #A66565;
+    border-color: #A66565;
 }

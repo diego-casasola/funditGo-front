@@ -6,10 +6,11 @@
         <div class="more-filters">
             <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Categorías</mat-label>
-                <input type="text" matInput formControlName="category" [matAutocomplete]="auto">
+                <input type="text" matInput formControlName="category" [matAutocomplete]="auto"
+                (focus)="focusInputProvider()">
                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                        {{option.name}}
+                        {{option.nombre}}
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>

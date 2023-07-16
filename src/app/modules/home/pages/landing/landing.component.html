@@ -4,18 +4,18 @@
             <img src="../../../../../assets/images/crowdfunding-flat-background-vector.png" alt="crow_background">
             <div class="buttons">
                 <button mat-raised-button type="button"
-                    [routerLink]="['create/proyecto']"
+                    (click)="crearProyecto()"
                     color="primary">
                     Publicar
                 </button>
                 <span>o</span>
-                <button mat-raised-button type="button"
+                <button href="#ancla-1" mat-raised-button type="button"
                     color="primary">
                     Donar
                 </button>
             </div>
         </div>
-        <article class="lista-proyectos">
+        <article name="ancla-1" class="lista-proyectos">
             <app-lista-proyectos></app-lista-proyectos>
         </article>
     </div>

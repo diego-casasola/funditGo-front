@@ -24,33 +24,49 @@ export class ViewProyectoComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private modalService: ModalService,
     private route: Router
-  ) { }
+  ) {
 
-  ngOnInit(): void {
-    console.log(this.proyectoId);
-    this.getProyecto();
   }
 
-  getProyecto() {
-    this.proyectoService.getProyectoById(this.proyectoId).subscribe(
-      (resp: any) => {
-        this.proyecto = resp;
-        console.log(this.proyecto);
-      },
-      (err) => { }
-    );
+  async ngOnInit(): Promise<void> {
+    await this.getProyecto();
+    console.log(this.isCreador());
+  }
+
+  async getProyecto(): Promise<void> {
+    try {
+      this.proyecto = await this.proyectoService.getProyectoById(this.proyectoId).toPromise();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   openDonation() {
-    console.log(this.proyecto.donacionMinima);
-    const dialog = this.modalService.openDonacionDialog(this.proyecto.donacionMinima, this.proyectoId);
-    dialog.afterClosed().subscribe(
-      (resp) => {
-        if (resp) {
-          this.route.navigate(['/pago/pasarela/' + resp]);
+    if (this.isCreador()) {
+      Swal.fire(
+        'Error',
+        'No puedes donar a tu propio proyecto',
+        'error'
+      );
+      return;
+    }
+
+    if (this.authService.isLogged()) {
+      const dialog = this.modalService.openDonacionDialog(this.proyecto.donacionMinima, this.proyectoId);
+      dialog.afterClosed().subscribe(
+        (resp) => {
+          if (resp) {
+            this.route.navigate(['/pago/pasarela/' + resp]);
+          }
         }
-      }
-    );
+      );
+    } else {
+      Swal.fire(
+        'Error',
+        'Debes iniciar sesión para poder donar',
+        'error'
+      );
+    }
   }
 
   aceptarProyecto() {
@@ -63,7 +79,7 @@ export class ViewProyectoComponent implements OnInit {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Aceptar',
       cancelButtonText: 'Cancelar'
-    }).then((result: any ) => {
+    }).then((result: any) => {
       if (result.isConfirmed) {
         this.proyectoService.aceptarProyecto(this.proyectoId).subscribe(
           (resp: any) => {
@@ -72,7 +88,7 @@ export class ViewProyectoComponent implements OnInit {
               'El proyecto ha sido aceptado exitosamente',
               'success'
             );
-            this.route.navigate(['proyecto/revision']);
+            this.route.navigate(['proyectos/revision']);
           },
           (err) => {
             Swal.fire(
@@ -86,4 +102,40 @@ export class ViewProyectoComponent implements OnInit {
     })
   }
 
+  rechazarProyecto() {
+    Swal.fire({
+      title: '¿Estás seguro de rechazar este proyecto?',
+      text: "No podrás revertir esta acción",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#00A7E1',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar'
+    }).then((result: any) => {
+      if (result.isConfirmed) {
+        this.proyectoService.rechazarProyecto(this.proyectoId).subscribe(
+          (resp: any) => {
+            Swal.fire(
+              'Proyecto rechazado',
+              'El proyecto ha sido rechazado exitosamente',
+              'success'
+            );
+            this.route.navigate(['proyectos/revision']);
+          },
+          (err) => {
+            Swal.fire(
+              'Error',
+              'Ha ocurrido un error al rechazar el proyecto',
+              'error'
+            );
+          }
+        );
+      }
+    })
+  }
+
+  isCreador() {
+    return this.user.user_id == this.proyecto.creador.id;
+  }
 }

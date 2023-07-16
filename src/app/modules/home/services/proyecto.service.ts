@@ -92,6 +92,51 @@ export class ProyectoService {
     return this.http.get<Paginacion>(url);
   }
 
+  filterProyectosBuscador(page: number, size: number, data: any): Observable<Paginacion> {
+    let url = `${this.baseUrl}/proyecto/buscar?`;
+
+    if (page) {
+      url += `Page=${page}&`;
+    }
+
+    if (size) {
+      url += `PageSize=${size}&`;
+    }
+
+    if (data.tipoProyectoId) {
+      url += `tipoProyectoId=${data.tipoProyectoId}&`;
+    }
+
+    if (data.titulo) {
+      url += `titulo=${data.titulo}&`;
+    }
+
+    if (data.estado) {
+      url += `estado=${data.estado}&`;
+    }
+
+    if (data.fechaDesde) {
+      url += `fechaDesde=${data.fechaDesde}&`;
+    }
+
+    if (data.fechaHasta) {
+      url += `fechaHasta=${data.fechaHasta}&`;
+    }
+
+    if (data.donacionMinima) {
+      url += `donacionMinima=${data.donacionMinima}&`;
+    }
+
+    if (data.estado) {
+      url += `estado=${data.estado}&`;
+    }
+
+    if (url.endsWith('&')) {
+      url = url.slice(0, -1);
+    }
+    return this.http.get<Paginacion>(url);
+  }
+
   aceptarProyecto(id: string) {
     const url = `${this.baseUrl}/proyecto/aceptar`;
     const headers = {
@@ -103,7 +148,18 @@ export class ProyectoService {
     return this.http.put<any>(url, data, { headers });
   }
 
-  donar(id: string){
+  rechazarProyecto(id: string) {
+    const url = `${this.baseUrl}/proyecto/rechazar`;
+    const headers = {
+      Authorization: `Bearer ${this.authService.accessToken}`,
+    }
+    const data = {
+      proyectoId: id
+    }
+    return this.http.put<any>(url, data, { headers });
+  }
+
+  donar(id: string) {
     const url = `${this.baseUrl}/pago/${id}`;
     const data = {
       idPago: id

@@ -3,6 +3,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { ProyectoService } from '../../services/proyecto.service';
 
 @Component({
   selector: 'app-proyectos-filter',
@@ -20,18 +21,8 @@ export class ProyectosFilterComponent implements OnInit {
     price_start: [''],
   });
 
-  listaCategoria: any[] = [
-    { id: 1, name: 'Categoría 1' },
-    { id: 2, name: 'Categoría 2' },
-    { id: 3, name: 'Categoría 3' },
-    { id: 4, name: 'Categoría 4' },
-    { id: 5, name: 'Categoría 5' },
-    { id: 6, name: 'Categoría 6' },
-    { id: 7, name: 'Categoría 7' },
-    { id: 8, name: 'Categoría 8' },
-    { id: 9, name: 'Categoría 9' },
-    { id: 10, name: 'Categoría 10' },
-  ];
+  tiposProyecto: any[] = [];
+  searchWord: string = '';
 
   value: number = 0;
   max = 100;
@@ -41,30 +32,36 @@ export class ProyectosFilterComponent implements OnInit {
   filteredOptions!: Observable<any[]>;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private proyectoService: ProyectoService
   ) { }
 
-  ngOnInit() {
-    this.setCategorias();
+  async ngOnInit(): Promise<void> {
+    await this.getTipoProyectoId();
+    await this.setCategorias();
   }
 
-  setCategorias() {
+  async setCategorias(): Promise<void> {
     this.filteredOptions = this.filterForm.controls['category'].valueChanges
     .pipe(
       startWith(''),
-      map(value => typeof value === 'string' ? value : value.name),
-      map(name => name ? this._filter(name) : this.listaCategoria.slice())
+      map(value => typeof value === 'string' ? value : value.nombre),
+      map(nombre => nombre ? this._filter(nombre) : this.tiposProyecto.slice())
     )
   }
 
-  displayFn(user: any): string {
-    return user && user.name ? user.name : '';
+  displayFn(tipo: any): string {
+    return tipo && tipo.nombre ? tipo.nombre : '';
   }
 
-  private _filter(name: string): any[] {
-    const filterValue = name.toLowerCase();
+  private _filter(nombre: string): any[] {
+    const filterValue = nombre.toLowerCase();
 
-    return this.listaCategoria.filter(option => option.name.toLowerCase().includes(filterValue));
+    return this.tiposProyecto.filter(option => option.nombre.toLowerCase().includes(filterValue));
+  }
+
+  focusInputProvider() {
+    this.searchWord = '';
   }
 
   formatLabel(value: number) {
@@ -72,9 +69,20 @@ export class ProyectosFilterComponent implements OnInit {
   }
 
   searchCategoria() {
-    this.filterForm.value.date_start = formatDate(this.filterForm.value.date_start, 'yyyy-MM-dd', 'en-US');
-    this.filterForm.value.date_end = formatDate(this.filterForm.value.date_end, 'yyyy-MM-dd', 'en-US');
+    this.filterForm.value.date_start = this.filterForm.value.date_start? formatDate(this.filterForm.value.date_start, 'yyyy-MM-dd', 'en-US') : '';
+    this.filterForm.value.date_end = this.filterForm.value.date_end? formatDate(this.filterForm.value.date_end, 'yyyy-MM-dd', 'en-US') : '';
+    this.filterForm.value.category = this.filterForm.value.category? this.filterForm.value.category.id : '';
+    this.filterForm.value.price_start = this.filterForm.value.price_start == 0? '' : this.filterForm.value.price_start;
     this.filterOutput.emit(this.filterForm.value);
+  }
+
+  async getTipoProyectoId(): Promise<void> {
+    this.proyectoService.getTipoProyectos().subscribe(
+      (resp: any) => {
+        this.tiposProyecto = resp;
+      },
+      (err) => { console.log(err); }
+    );
   }
 
   clear(){

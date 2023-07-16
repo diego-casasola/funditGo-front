@@ -1,8 +1,8 @@
-<h2>Peticiones de proyectos</h2>
 <div class="lista-proyectos-component">
+    <h2>Peticiones de proyectos</h2>
     <div *ngIf="listaProyectos.length > 0; else nohay">
         <div class="container-proList">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="row cards-container">
                 <ng-container *ngFor="let item of listaProyectos">
                     <div class="col">
                         <div class="card border-light" style="width: 18rem;">
@@ -28,6 +28,7 @@
             </div>
         </div>
     </div>
+    
 
     <mat-paginator [length]="lengthTable" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
         (page)="pageEvent = $event; onPaginateChange($event)" showFirstLastButtons="true">

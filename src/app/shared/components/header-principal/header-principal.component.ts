@@ -33,8 +33,6 @@ export class HeaderPrincipalComponent implements OnInit, OnChanges {
   }
 
   validateRoute() {
-    console.log(this.router.url);
-    console.log(this.isLanding);
     if (this.router.url === '/') {
       this.isLanding = true;
     } else {

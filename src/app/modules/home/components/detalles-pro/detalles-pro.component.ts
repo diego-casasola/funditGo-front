@@ -13,9 +13,6 @@ export class DetallesProComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.descripcion);
-    console.log(this.historia);
-    console.log(this.compromiso);
   }
 
 }

@@ -1,4 +1,4 @@
-<div class="header-proyecto">
+<div class="header-proyecto" *ngIf="proyecto">
     <h1 class="titulo-proyecto">{{proyecto.titulo}}</h1>
     <div class="basic-info">
         <div class="proyecto-img">
@@ -16,16 +16,13 @@
                         <span>{{proyecto.cantidadDonaciones}}</span>
                         <p>donantes</p>
                     </div>
-                    <!-- <div class="dias-restantes">
-                        <span>36</span>
-                        <p>días restantes</p>
-                    </div> -->
                 </div>
             </div>
             <div class="buttons">
-                <button class="btn btn-primary btn-donar" (click)="openDonation()">Donar a este proyecto</button>
-                <button class="btn btn-primary compartir">Compartir</button>
-                <button *ngIf="user.is_staff && proyecto.estado == 'Revision'" class="btn btn-primary btn-aceptar" (click)="aceptarProyecto()">Aceptar</button>
+                <button *ngIf="user.is_staff === 'False' || user" class="btn btn-primary btn-donar" (click)="openDonation()">Donar a este proyecto</button>
+                <button *ngIf="user.is_staff === 'False' || user" class="btn btn-primary compartir">Compartir</button>
+                <button *ngIf="user.is_staff && proyecto.estado == 'Revision'" class="btn btn-success btn-aceptar" (click)="aceptarProyecto()">Aceptar</button>
+                <button *ngIf="user.is_staff && proyecto.estado == 'Revision'" class="btn btn-danger btn-rechazar" (click)="rechazarProyecto()">Rechazar</button>
             </div>
         </div>
     </div>
@@ -41,10 +38,13 @@
                     <app-detalles-pro [DESCRIPCION]="proyecto.descripcion" [HISTORIA]="proyecto.historia"
                         [COMPROMISO]="proyecto.compromisoAmbiental"></app-detalles-pro>
                 </mat-tab>
-                <mat-tab label="Actualizaciones">
+                <mat-tab *ngIf="user.is_staff === 'False' || user" label="Actualizaciones">
                     <app-actualizaciones-pro [ACTUALIZACIONES]="proyecto.actualizaciones"></app-actualizaciones-pro>
                 </mat-tab>
-                <mat-tab label="Comentarios">
+                <mat-tab *ngIf="user.is_staff === 'False' || user" label="Comentarios">
+                    <app-comentarios-pro [COMENTARIOS]="proyecto.comentarios"></app-comentarios-pro>
+                </mat-tab>
+                <mat-tab *ngIf="user.is_staff === 'True'" label="Información Privada">
                     <app-comentarios-pro [COMENTARIOS]="proyecto.comentarios"></app-comentarios-pro>
                 </mat-tab>
             </mat-tab-group>
@@ -75,8 +75,8 @@
                         </div>
                     </div>
                     <div class="buttons-historial">
-                        <button class="btn">Donar a este proyecto</button>
-                        <button class="btn">Compartir</button>
+                        <button *ngIf="user.is_staff === 'False'" class="btn">Donar a este proyecto</button>
+                        <button *ngIf="user.is_staff === 'False'" class="btn">Compartir</button>
                     </div>
                 </div>
             </div>

@@ -11,7 +11,6 @@ export class ComentariosProComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.comentarios);
   }
 
   openComentar(){
