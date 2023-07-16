@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { RUser } from '../interfaces/user.interface';
 
 @Component({
   selector: 'app-register',
@@ -24,15 +26,35 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private dateAdapter: DateAdapter<Date>
+    private dateAdapter: DateAdapter<Date>,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
   }
 
   register() {
-    this.registerForm.value.dateOfBirth = formatDate(this.registerForm.value.dateOfBirth, 'yyyy-MM-dd', 'en-US');
-    console.log(this.registerForm.value);
+    if (this.registerForm.invalid) {
+      return;
+    }
+
+    const { name, lastname, email, dateOfBirth, username, password } = this.registerForm.value;
+
+    const user: RUser = {
+      userName: username,
+      firstName: name,
+      lastName: lastname,
+      password: password,
+      email: email,
+      fechaNacimiento: formatDate(dateOfBirth, 'yyyy-MM-dd', 'en-US'),
+      isAdmin: false
+    }
+
+    this.authService.registerUser(user).subscribe(resp => {
+      if (resp) {
+        this.router.navigateByUrl('/auth/login');
+      }
+    });
   }
 
 }

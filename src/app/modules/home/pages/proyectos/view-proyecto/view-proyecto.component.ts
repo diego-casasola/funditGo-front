@@ -63,7 +63,7 @@ export class ViewProyectoComponent implements OnInit {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Aceptar',
       cancelButtonText: 'Cancelar'
-    }).then((result) => {
+    }).then((result: any ) => {
       if (result.isConfirmed) {
         this.proyectoService.aceptarProyecto(this.proyectoId).subscribe(
           (resp: any) => {
@@ -72,7 +72,7 @@ export class ViewProyectoComponent implements OnInit {
               'El proyecto ha sido aceptado exitosamente',
               'success'
             );
-            this.route.navigate(['proyecto']);
+            this.route.navigate(['proyecto/revision']);
           },
           (err) => {
             Swal.fire(

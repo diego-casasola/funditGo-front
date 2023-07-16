@@ -16,6 +16,17 @@ export interface ShortUser{
     username: string;
 }
 
+export interface RUser{
+    userName: string;
+    firstName: string;
+    lastName: string;
+    password: string;
+    email: string;
+    fechaNacimiento: string;
+    isAdmin: boolean;
+    
+}
+
 export interface Permisos {
     ADMIN_SEC: string;
     ADMIN_PROYECTOS: string

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { catchError, mapTo, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { AuthResponse, User } from '../interfaces/user.interface';
+import { AuthResponse, RUser, User } from '../interfaces/user.interface';
 import { Router } from '@angular/router';
 
 const helper = new JwtHelperService();
@@ -123,6 +123,11 @@ export class AuthService {
 
   private storeTokens(tokens: AuthResponse) {
     localStorage.setItem(this.JWT_TOKEN, tokens.jwt!);
+  }
+
+  registerUser(user: RUser){
+    const url = `${this.baseUrl}/Security/registrar-comun`
+    return this.httpCliente.post(url, user);
   }
 
   logout() {
