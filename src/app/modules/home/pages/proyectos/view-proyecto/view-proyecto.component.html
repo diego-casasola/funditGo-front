@@ -16,13 +16,19 @@
                         <span>{{proyecto.cantidadDonaciones}}</span>
                         <p>donantes</p>
                     </div>
+                    <div class="mt-4">
+                        <span *ngIf="isCreador()" [ngClass]="{'resaltar-texto': true}">Administras este proyecto</span>
+                    </div>
                 </div>
             </div>
             <div class="buttons">
-                <button *ngIf="user.is_staff === 'False' || user" class="btn btn-primary btn-donar" (click)="openDonation()">Donar a este proyecto</button>
-                <button *ngIf="user.is_staff === 'False' || user" class="btn btn-primary compartir">Compartir</button>
-                <button *ngIf="user.is_staff && proyecto.estado == 'Revision'" class="btn btn-success btn-aceptar" (click)="aceptarProyecto()">Aceptar</button>
-                <button *ngIf="user.is_staff && proyecto.estado == 'Revision'" class="btn btn-danger btn-rechazar" (click)="rechazarProyecto()">Rechazar</button>
+                <button *ngIf="proyecto.estado === 'Aceptado'" class="btn btn-primary btn-donar"
+                    (click)="openDonation()">Donar a este proyecto</button>
+                <button *ngIf="proyecto.estado === 'Aceptado'" class="btn btn-primary compartir">Compartir</button>
+                <button *ngIf="user.is_staff && proyecto.estado == 'Revision'" class="btn btn-success btn-aceptar"
+                    (click)="aceptarProyecto()">Aceptar</button>
+                <button *ngIf="user.is_staff && proyecto.estado == 'Revision'" class="btn btn-danger btn-rechazar"
+                    (click)="rechazarProyecto()">Rechazar</button>
             </div>
         </div>
     </div>
@@ -42,7 +48,9 @@
                     <app-actualizaciones-pro [ACTUALIZACIONES]="proyecto.actualizaciones"></app-actualizaciones-pro>
                 </mat-tab>
                 <mat-tab *ngIf="user.is_staff === 'False' || user" label="Comentarios">
-                    <app-comentarios-pro [COMENTARIOS]="proyecto.comentarios"></app-comentarios-pro>
+                    <app-comentarios-pro [COMENTARIOS]="proyecto.comentarios" [PROYECTO_ID]="proyectoId"
+                        (comentariosActualizados)="actualizarComentarios()"
+                        [IS_STAFF]="isCreador()"></app-comentarios-pro>
                 </mat-tab>
                 <mat-tab *ngIf="user.is_staff === 'True'" label="Información Privada">
                     <app-comentarios-pro [COMENTARIOS]="proyecto.comentarios"></app-comentarios-pro>

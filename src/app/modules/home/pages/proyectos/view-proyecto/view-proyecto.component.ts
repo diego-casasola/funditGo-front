@@ -102,6 +102,10 @@ export class ViewProyectoComponent implements OnInit {
     })
   }
 
+  actualizarComentarios() {
+    this.getProyecto();
+  }
+
   rechazarProyecto() {
     Swal.fire({
       title: '¿Estás seguro de rechazar este proyecto?',
@@ -137,5 +141,8 @@ export class ViewProyectoComponent implements OnInit {
 
   isCreador() {
     return this.user.user_id == this.proyecto.creador.id;
+  }
+
+  verifyUser(){
   }
 }

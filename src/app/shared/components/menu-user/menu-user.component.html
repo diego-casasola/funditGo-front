@@ -22,7 +22,7 @@
   </mat-menu>
 
   <mat-menu #staff="matMenu" xPosition="before">
-    <button mat-menu-item>Mis Proyectos</button>
+    <button mat-menu-item [routerLink]="['proyectos/mis-proyectos']">Mis Proyectos</button>
     <button mat-menu-item>Guardados</button>
   </mat-menu>
 </ng-container>
