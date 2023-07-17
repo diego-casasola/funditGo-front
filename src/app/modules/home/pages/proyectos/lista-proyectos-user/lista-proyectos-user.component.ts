@@ -62,7 +62,7 @@ export class ListaProyectosUserComponent implements OnInit {
     if (proyecto.estado === 'Borrador') {
       this.router.navigate(['proyecto/editar/', proyecto.id]);
     }
-    if (proyecto.estado === 'Revision' || proyecto.estado === 'Observacion') {
+    if (proyecto.estado === 'Revision' || proyecto.estado === 'Aceptado') {
       this.router.navigate(['proyecto/', proyecto.id]);
     }
   }
