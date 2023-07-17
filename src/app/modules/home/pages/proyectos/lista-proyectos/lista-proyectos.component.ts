@@ -62,9 +62,17 @@ export class ListaProyectosComponent implements OnInit {
           .pipe(
             tap(() => {
               this.getListaFavoritosUsuario().subscribe();
-            })
-          )
-          .subscribe();
+            }, (err) => {
+              if (err.status === 400) {
+                Swal.fire({
+                  title: 'No se puede agregar a favoritos',
+                  text: 'No se puede agregar a favoritos un proyecto propio',
+                  icon: 'warning',
+                  confirmButtonText: 'Aceptar'
+                });
+              }
+            } )
+          ).subscribe();
       }
     } else {
       Swal.fire({
