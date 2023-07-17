@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Proyecto } from '../../../interfaces/proyecto.interface';
 import { ProyectoService } from '../../../services/proyecto.service';
+import { ConfiguracionService } from '../../../services/configuracion.service';
 
 @Component({
   selector: 'app-proyectos-revision',
@@ -19,6 +20,7 @@ export class ProyectosRevisionComponent implements OnInit {
 
   constructor(
     private proyectoService: ProyectoService,
+    private configService: ConfiguracionService
   ) { }
 
   ngOnInit(): void {
@@ -42,6 +44,16 @@ export class ProyectosRevisionComponent implements OnInit {
           ...proyecto,
           order: index
         }));
+        this.listaProyectos.forEach((proyecto: any) => {
+          this.configService.requerimientosProyecto(proyecto.id).subscribe(
+            (resp: any) => {
+              resp.requisitos.forEach((requisito: any) => {
+                if (requisito.requerimiento.nombre === 'Imagen' || requisito.requerimiento.nombre === 'ImagenPrincipal') {
+                  proyecto.imagen = requisito.archivoId
+                }
+              });
+            });
+        });
       }
     );
   }
