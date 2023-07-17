@@ -5,6 +5,7 @@ import { ProyectoService } from '../../../services/proyecto.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { map, switchMap, tap } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { ConfiguracionService } from '../../../services/configuracion.service';
 
 @Component({
   selector: 'app-lista-proyectos',
@@ -23,9 +24,12 @@ export class ListaProyectosComponent implements OnInit {
   listaProyectos: Proyecto[] = [];
   proyectosFavoritosUser: ProyectoFavorito[] = [];
 
+  imgUrl: string = '';
+
   constructor(
     private proyectoService: ProyectoService,
     private authService: AuthService,
+    private configService: ConfiguracionService
   ) { }
 
   ngOnInit(): void {
@@ -71,7 +75,7 @@ export class ListaProyectosComponent implements OnInit {
                   confirmButtonText: 'Aceptar'
                 });
               }
-            } )
+            })
           ).subscribe();
       }
     } else {
@@ -96,11 +100,22 @@ export class ListaProyectosComponent implements OnInit {
   getProyectosPage(page: number, pageSize: number) {
     this.proyectoService.getListaProyectosPag(page, pageSize).subscribe(
       (resp: any) => {
-        console.log(resp);
         this.listaProyectos = resp.items.map((proyecto: any, index: number) => ({
           ...proyecto,
           order: index
         }));
+        console.log(this.listaProyectos);
+        this.listaProyectos.forEach((proyecto: any) => {
+          this.configService.requerimientosProyecto(proyecto.id).subscribe(
+            (resp: any) => {
+              resp.requisitos.forEach((requisito: any) => {
+                if (requisito.requerimiento.nombre === 'Imagen' || requisito.requerimiento.nombre === 'ImagenPrincipal') {
+                  proyecto.imagen = requisito.archivoId
+                }
+              });
+            });
+        });
+        console.log(this.listaProyectos);
       }
     );
   }
