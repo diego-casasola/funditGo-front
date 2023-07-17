@@ -19,6 +19,9 @@ import { GestionProyectosComponent } from './pages/proyectos/gestion-proyectos/g
 import { DonacionModalComponent } from './components/modals/donacion-modal/donacion-modal.component';
 import { PagoComponent } from './pages/pago/pago.component';
 import { ProyectosRevisionComponent } from './pages/admin/proyectos-revision/proyectos-revision.component';
+import { ComentarioModalComponent } from './components/modals/comentario-modal/comentario-modal.component';
+import { ListaUsuariosComponent } from './pages/admin/lista-usuarios/lista-usuarios.component';
+import { ListaProyectosUserComponent } from './pages/proyectos/lista-proyectos-user/lista-proyectos-user.component';
 
 
 @NgModule({
@@ -34,7 +37,10 @@ import { ProyectosRevisionComponent } from './pages/admin/proyectos-revision/pro
     GestionProyectosComponent,
     DonacionModalComponent,
     PagoComponent,
-    ProyectosRevisionComponent
+    ProyectosRevisionComponent,
+    ComentarioModalComponent,
+    ListaUsuariosComponent,
+    ListaProyectosUserComponent
   ],
   imports: [
     CommonModule,

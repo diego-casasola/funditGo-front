@@ -6,6 +6,7 @@ import { ViewProyectoComponent } from './pages/proyectos/view-proyecto/view-proy
 import { GestionProyectosComponent } from './pages/proyectos/gestion-proyectos/gestion-proyectos.component';
 import { PagoComponent } from './pages/pago/pago.component';
 import { ProyectosRevisionComponent } from './pages/admin/proyectos-revision/proyectos-revision.component';
+import { ListaProyectosUserComponent } from './pages/proyectos/lista-proyectos-user/lista-proyectos-user.component';
 
 const routes: Routes = [{
   path: '',
@@ -30,6 +31,10 @@ const routes: Routes = [{
 {
   path: 'proyectos/revision',
   component: ProyectosRevisionComponent,
+},
+{
+  path: 'proyectos/mis-proyectos',
+  component: ListaProyectosUserComponent
 }
 ];
 

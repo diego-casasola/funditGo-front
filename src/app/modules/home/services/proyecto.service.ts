@@ -166,4 +166,22 @@ export class ProyectoService {
     }
     return this.http.put<any>(url, data);
   }
+
+  crearComentario(proyectoId: string, usuarioId: string, comentario: string) {
+    const url = `${this.baseUrl}/proyecto/comentario`;
+    const data = {
+      proyectoId: proyectoId,
+      usuarioId: usuarioId,
+      comentario: comentario
+    }
+    const headers = {
+      Authorization: `Bearer ${this.authService.accessToken}`,
+    }
+    return this.http.post<any>(url, data, { headers });
+  }
+
+  proyectosCreador(usuarioId: string) {
+    const url = `${this.baseUrl}/proyecto/buscar/creador/${usuarioId}`;
+    return this.http.get<Proyecto[]>(url);
+  }
 }
