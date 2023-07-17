@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { ProyectoService } from '../../../services/proyecto.service';
 import { Proyecto } from '../../../interfaces/proyecto.interface';
 import { Router } from '@angular/router';
+import { ConfiguracionService } from '../../../services/configuracion.service';
 
 @Component({
   selector: 'app-lista-proyectos-user',
@@ -15,7 +16,8 @@ export class ListaProyectosUserComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private proyectoService: ProyectoService
+    private proyectoService: ProyectoService,
+    private configService: ConfiguracionService
   ) { }
 
   ngOnInit(): void {
@@ -27,6 +29,20 @@ export class ListaProyectosUserComponent implements OnInit {
       (resp) => {
         console.log(resp);
         this.listaProyectos = resp;
+        this.listaProyectos.forEach((proyecto: any) => {
+          this.configService.requerimientosProyecto(proyecto.id).subscribe(
+            (resp: any) => {
+              resp.requisitos.forEach((requisito: any) => {
+                if (requisito.requerimiento.nombre === 'Imagen' || requisito.requerimiento.nombre === 'ImagenPrincipal') {
+                  if (requisito.archivoId){
+                    proyecto.imagen = 'https://localhost:7120/api/configuracion/file/'+requisito.archivoId;
+                  } else {
+                    
+                  }
+                }
+              });
+            });
+        });
       },
       (err) => { console.log(err); });
   }

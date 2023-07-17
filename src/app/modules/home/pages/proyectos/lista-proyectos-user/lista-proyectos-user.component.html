@@ -6,7 +6,7 @@
                 <ng-container *ngFor="let item of listaProyectos">
                     <div class="col">
                         <div class="card border-light mt-4" style="width: 18rem;">
-                            <img src="../../../../../../assets/images/crowdfunding-flat-background-vector.png"
+                            <img src="{{item.imagen ? item.imagen : 'assets/images/crowdfunding-flat-background-vector.png'}}"
                                 class="card-img-top square" alt="...">
                             <mat-progress-bar mode="determinate"
                                 value="{{item.porcentajeDonaciones}}"></mat-progress-bar>

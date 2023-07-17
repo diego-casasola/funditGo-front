@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RProyecto } from '../../../interfaces/proyecto.interface';
 import { ModalService } from '../../../services/modal.service';
 import Swal from 'sweetalert2';
+import { ConfiguracionService } from '../../../services/configuracion.service';
 
 @Component({
   selector: 'app-view-proyecto',
@@ -24,12 +25,14 @@ export class ViewProyectoComponent implements OnInit {
     private authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private modalService: ModalService,
-    private route: Router
+    private route: Router,
+    private configService: ConfiguracionService
   ) {
 
   }
 
   async ngOnInit(): Promise<void> {
+    this.obtenerImagen();
     await this.getProyecto();
     console.log(this.isCreador());
   }
@@ -148,6 +151,15 @@ export class ViewProyectoComponent implements OnInit {
     return this.authService.isLogged();
   }
 
-  verifyUser(){
+  obtenerImagen() {
+    this.configService.requerimientosProyecto(this.proyectoId).subscribe(
+      (resp: any) => {
+        resp.requisitos.forEach((req: any) => {
+          if (req.requerimiento.nombre === 'Imagen' || req.requerimiento.nombre === 'ImagenPrincipal') {
+            this.imgUrl = req.archivoId;
+          }
+        });
+      }
+    );
   }
 }

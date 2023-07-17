@@ -4,6 +4,8 @@ import { PageEvent } from '@angular/material/paginator';
 import { Proyecto, ProyectoFavorito } from '../../interfaces/proyecto.interface';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { map, tap } from 'rxjs/operators';
+import Swal from 'sweetalert2';
+import { ConfiguracionService } from '../../services/configuracion.service';
 
 @Component({
   selector: 'app-buscador',
@@ -23,6 +25,7 @@ export class BuscadorComponent implements OnInit {
   constructor(
     private proyectoService: ProyectoService,
     private authService: AuthService,
+    private configService: ConfiguracionService
   ) { }
 
   ngOnInit(): void {
@@ -60,16 +63,24 @@ export class BuscadorComponent implements OnInit {
   }
 
   getProyectosPage(page: number, pageSize: number) {
-    let data = {
-      estado: 'Aceptado'
-    }
-    this.proyectoService.filterProyectos(page, pageSize, data).subscribe(
+    this.proyectoService.getListaProyectosPag(page, pageSize).subscribe(
       (resp: any) => {
-        console.log(resp);
         this.proyectosEncontrados = resp.items.map((proyecto: any, index: number) => ({
           ...proyecto,
           order: index
         }));
+        console.log(this.proyectosEncontrados);
+        this.proyectosEncontrados.forEach((proyecto: any) => {
+          this.configService.requerimientosProyecto(proyecto.id).subscribe(
+            (resp: any) => {
+              resp.requisitos.forEach((requisito: any) => {
+                if (requisito.requerimiento.nombre === 'Imagen' || requisito.requerimiento.nombre === 'ImagenPrincipal') {
+                  proyecto.imagen = requisito.archivoId
+                }
+              });
+            });
+        });
+        console.log(this.proyectosEncontrados);
       }
     );
   }
@@ -94,10 +105,25 @@ export class BuscadorComponent implements OnInit {
           .pipe(
             tap(() => {
               this.getListaFavoritosUsuario().subscribe();
+            }, (err) => {
+              if (err.status === 400) {
+                Swal.fire({
+                  title: 'No se puede agregar a favoritos',
+                  text: 'No se puede agregar a favoritos un proyecto propio',
+                  icon: 'warning',
+                  confirmButtonText: 'Aceptar'
+                });
+              }
             })
-          )
-          .subscribe();
+          ).subscribe();
       }
+    } else {
+      Swal.fire({
+        title: 'Debe iniciar sesión',
+        text: 'Para poder agregar a favoritos debe iniciar sesión',
+        icon: 'warning',
+        confirmButtonText: 'Aceptar'
+      });
     }
   }
 
