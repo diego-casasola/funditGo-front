@@ -1,0 +1,16 @@
+<h2>Requerimientos</h2>
+<form [formGroup]="formReq">
+    <div formArrayName="requerimiento">
+        <ng-container *ngFor="let requerimiento of requerimientos().controls; let i = index">
+            <div [formGroupName]="i">
+                <span>Suba {{requerimiento.get('nombreReq')?.value}} {{requerimiento.get('obligatorio')?.value ? '*':
+                    ''}}</span>
+                <input type="file" [formControlName]="'file'" (change)="onFileChange($event, i)">
+            </div>
+        </ng-container>
+    </div>
+</form>
+<div class="group-btn">
+    <button mat-raised-button matStepperPrevious>Anterior</button>
+    <button mat-raised-button (click)="subir()">Guardar</button>
+</div>

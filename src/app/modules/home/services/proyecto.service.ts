@@ -83,7 +83,7 @@ export class ProyectoService {
   }
 
   getTipoProyectos() {
-    const url = `${this.baseUrl}/tipoProyecto`;
+    const url = `${this.baseUrl}/configuracion/tipoProyecto`;
     return this.http.get<any[]>(url);
   }
 

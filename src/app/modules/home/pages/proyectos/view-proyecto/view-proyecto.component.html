@@ -25,9 +25,9 @@
                 <button *ngIf="proyecto.estado === 'Aceptado'" class="btn btn-primary btn-donar"
                     (click)="openDonation()">Donar a este proyecto</button>
                 <button *ngIf="proyecto.estado === 'Aceptado'" class="btn btn-primary compartir">Compartir</button>
-                <button *ngIf="user.is_staff && proyecto.estado == 'Revision'" class="btn btn-success btn-aceptar"
+                <button *ngIf="user.is_staff === 'True' && proyecto.estado == 'Revision'" class="btn btn-success btn-aceptar"
                     (click)="aceptarProyecto()">Aceptar</button>
-                <button *ngIf="user.is_staff && proyecto.estado == 'Revision'" class="btn btn-danger btn-rechazar"
+                <button *ngIf="user.is_staff === 'True' && proyecto.estado == 'Revision'" class="btn btn-danger btn-rechazar"
                     (click)="rechazarProyecto()">Rechazar</button>
             </div>
         </div>

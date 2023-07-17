@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { ProyectoService } from '../../../services/proyecto.service';
 import { Proyecto } from '../../../interfaces/proyecto.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-proyectos-user',
@@ -13,6 +14,7 @@ export class ListaProyectosUserComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private router: Router,
     private proyectoService: ProyectoService
   ) { }
 
@@ -54,6 +56,15 @@ export class ListaProyectosUserComponent implements OnInit {
     }
   
     return { color: color };
+  }
+
+  verProyecto(proyecto: Proyecto) {
+    if (proyecto.estado === 'Borrador') {
+      this.router.navigate(['proyecto/editar/', proyecto.id]);
+    }
+    if (proyecto.estado === 'Revision' || proyecto.estado === 'Observacion') {
+      this.router.navigate(['proyecto/', proyecto.id]);
+    }
   }
   
 }

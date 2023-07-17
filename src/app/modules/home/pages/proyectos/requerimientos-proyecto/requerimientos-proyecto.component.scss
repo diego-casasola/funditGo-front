@@ -1,0 +1,69 @@
+.req-ci {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.req-ci span {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.input-file {
+    position: relative;
+}
+
+.inputfile {
+    display: none;
+}
+
+.label-file {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4c77af;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.preview-container {
+    width: 200px;
+    height: 200px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#preview {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.group-btn {
+    display: flex;
+    text-align: end;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+
+    button {
+        display: block;
+        margin-bottom: 10px;
+        margin-left: 5px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    button:first-child {
+        margin-left: 0px;
+    }
+
+    button:last-child {
+        margin-right: 0px;
+    }
+}

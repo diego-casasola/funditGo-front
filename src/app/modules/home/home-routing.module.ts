@@ -21,6 +21,10 @@ const routes: Routes = [{
   component: ViewProyectoComponent,
 },
 {
+  path: 'proyecto/editar/:proyectoId',
+  component: GestionProyectosComponent,
+},
+{
   path: 'create/proyecto',
   component: GestionProyectosComponent,
 },

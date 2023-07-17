@@ -22,6 +22,7 @@ import { ProyectosRevisionComponent } from './pages/admin/proyectos-revision/pro
 import { ComentarioModalComponent } from './components/modals/comentario-modal/comentario-modal.component';
 import { ListaUsuariosComponent } from './pages/admin/lista-usuarios/lista-usuarios.component';
 import { ListaProyectosUserComponent } from './pages/proyectos/lista-proyectos-user/lista-proyectos-user.component';
+import { RequerimientosProyectoComponent } from './pages/proyectos/requerimientos-proyecto/requerimientos-proyecto.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ListaProyectosUserComponent } from './pages/proyectos/lista-proyectos-u
     ProyectosRevisionComponent,
     ComentarioModalComponent,
     ListaUsuariosComponent,
-    ListaProyectosUserComponent
+    ListaProyectosUserComponent,
+    RequerimientosProyectoComponent
   ],
   imports: [
     CommonModule,

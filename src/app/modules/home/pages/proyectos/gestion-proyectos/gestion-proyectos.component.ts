@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { ProyectoService } from '../../../services/proyecto.service';
 import Swal from 'sweetalert2';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-gestion-proyectos',
@@ -11,6 +12,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./gestion-proyectos.component.scss']
 })
 export class GestionProyectosComponent implements OnInit {
+  proyectoId: any;
+  tipoProyectoId!: string;
+
   userId = this.authService.currentUserId;
   formProyecto = this.fb.group({
     creadorId: [this.userId],
@@ -30,10 +34,18 @@ export class GestionProyectosComponent implements OnInit {
     private authService: AuthService,
     private route: Router,
     private proyectoService: ProyectoService,
-  ) { }
+    private activatedRoute: ActivatedRoute
+  ) { 
+  }
 
   ngOnInit(): void {
-    this.getTipoProyectoId();
+    this.proyectoId = this.activatedRoute.snapshot.paramMap.get('proyectoId');
+    if (this.proyectoId) {
+      this.getProyectoById();
+      this.getTipoProyectoId();
+    } else {
+      this.getTipoProyectoId();
+    }
   }
 
   getTipoProyectoId() {
@@ -45,7 +57,7 @@ export class GestionProyectosComponent implements OnInit {
     );
   }
 
-  guardar() {
+  guardar(stepper: MatStepper) {
     if (this.formProyecto.invalid) {
       return;
     }
@@ -55,19 +67,37 @@ export class GestionProyectosComponent implements OnInit {
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
-        this.proyectoService.createProyecto(this.formProyecto.value).subscribe(
-          (resp: any) => {
-            Swal.close();
-            setTimeout(() => {
-              this.route.navigate(['/proyecto/' + resp]);
-            }, 500);
-          },
-          (_) => {
-            Swal.close();
-            Swal.fire('Error al crear el proyecto')
-          }
-        );
+        setTimeout(() => {
+          this.proyectoService.createProyecto(this.formProyecto.value).subscribe(
+            (resp: any) => {
+              Swal.close();
+                stepper.next();
+                  this.tipoProyectoId = this.formProyecto.controls.tipoproyectoId.value;
+            },
+            (_) => {
+              Swal.close();
+              Swal.fire('Error al crear el proyecto');
+            }
+          );
+        }, 5000); // 5000 milisegundos = 5 segundos
       }
-    })
+    });
+  }
+
+  getProyectoById() {
+    this.proyectoService.getProyectoById(this.proyectoId).subscribe(
+      (resp: any) => {
+        this.formProyecto.patchValue(resp);
+        // fill category
+        this.formProyecto.controls.tipoproyectoId.setValue(resp.tipo.id);
+        this.formProyecto.disable();
+        this.tipoProyectoId = resp.tipo.id;
+      },
+      (err) => { console.log(err); }
+    );
+  }
+
+  fillForm(proyecto: any) {
+    this.formProyecto.patchValue(proyecto);
   }
 }

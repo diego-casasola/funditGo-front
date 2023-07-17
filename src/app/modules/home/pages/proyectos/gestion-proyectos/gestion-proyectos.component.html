@@ -69,11 +69,13 @@
             </form>
             <div class="group-btn">
                 <button mat-raised-button matStepperPrevious>Anterior</button>
-                <button mat-raised-button (click)="guardar()" [disabled]="!formProyecto.valid">Guardar</button>
+                <button mat-raised-button (click)="guardar(stepper)" [disabled]="!formProyecto.valid">Guardar</button>
             </div>
         </mat-step>
-        <mat-step>2
-            <ng-template matStepLabel>Requerimientos</ng-template>
+        <mat-step label="Requerimientos Proyectos">
+                <app-requerimientos-proyecto [TIPOPROYECTOID]="tipoProyectoId" [PROYECTOID]="proyectoId">
+
+                </app-requerimientos-proyecto>
         </mat-step>
     </mat-stepper>
 </div>

@@ -21,7 +21,7 @@
                                 <p class="card-text">{{item.descripcion}}</p>
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                     <button class="col-sm-9 show" mat-raised-button type="button"
-                                        [routerLink]="['/proyecto/' + item.id]">Ver Proyecto</button>
+                                        (click)="verProyecto(item)">Ver Proyecto</button>
                                 </div>
                             </div>
                         </div>
