@@ -2,6 +2,7 @@ import { ComponentType } from '@angular/cdk/portal';
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { DonacionModalComponent } from '../components/modals/donacion-modal/donacion-modal.component';
+import { ComentarioModalComponent } from '../components/modals/comentario-modal/comentario-modal.component';
 
 @Injectable({
   providedIn: 'root'
@@ -31,9 +32,15 @@ export class ModalService {
     return this.dialog.open(component, this.dialog_config);
   }
 
-  openDonacionDialog(donacionMinima: number, proyectoId: string){
-    this.dialog_config.data = {donacionMinima, proyectoId};
+  openDonacionDialog(donacionMinima: number, proyectoId: string) {
+    this.dialog_config.data = { donacionMinima, proyectoId };
     this.dialog_config.height = 'auto';
     return this.dialog.open(DonacionModalComponent, this.dialog_config);
+  }
+
+  openComentarioDialog(proyectoId: string) {
+    this.dialog_config.data = { proyectoId };
+    this.dialog_config.height = 'auto';
+    return this.dialog.open(ComentarioModalComponent, this.dialog_config);
   }
 }
