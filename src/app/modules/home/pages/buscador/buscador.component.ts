@@ -58,6 +58,16 @@ export class BuscadorComponent implements OnInit {
           ...proyecto,
           order: index
         }));
+        this.proyectosEncontrados.forEach((proyecto: any) => {
+          this.configService.requerimientosProyecto(proyecto.id).subscribe(
+            (resp: any) => {
+              resp.requisitos.forEach((requisito: any) => {
+                if (requisito.requerimiento.nombre === 'Imagen' || requisito.requerimiento.nombre === 'ImagenPrincipal') {
+                  proyecto.imagen = requisito.archivoId
+                }
+              });
+            });
+        });
       }
     );
   }
