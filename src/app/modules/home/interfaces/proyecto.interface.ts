@@ -10,6 +10,7 @@ export interface Proyecto{
     donacionMinima: number;
     porcentajeDonaciones: number;
     cantidadDonaciones: number;
+    imagen: string;
 }
 
 export interface RProyecto{
@@ -52,4 +53,24 @@ export interface TipoProyecto{
 export interface ProyectoFavorito{
     id: string;
     proyecto: Proyecto;
+}
+
+export interface Requisitos {
+    id: string;
+    creadorId: string;
+    estado: string;
+    titulo: string;
+    tipoProyecto: TipoProyecto;
+    requisitos: Requisito[];
+}
+
+export interface Requisito {
+    id: string;
+    requerimiento: Requerimiento;
+    archivoId: string;
+}
+
+export interface Requerimiento {
+    id: string;
+    nombre: string;
 }

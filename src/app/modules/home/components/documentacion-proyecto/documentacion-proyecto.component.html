@@ -1,0 +1,16 @@
+<section class="doc-container">
+    <h2>Documentación del Proyecto</h2>
+    <div class="tipo-proyecto">Tipo proyecto: {{listaDocumentacion.tipoProyecto.nombre}}</div>
+    <hr class="separador">
+    <ng-container *ngFor="let requisito of listaDocumentacion.requisitos">
+        <div class="requisito">
+            <span class="requisito-nombre">{{requisito.requerimiento.nombre}}</span>
+            <div class="acciones">
+                <button class="btn btn-success" (click)="ver(requisito)">Ver</button>
+                <button class="btn btn-primary" (click)="descargar(requisito)">Descargar</button>
+                <button class="btn btn-danger" [disabled]="estadoProyecto === 'Aceptado' || user.is_staff === 'True'" (click)="eliminar(requisito.id)">Eliminar</button>
+            </div>
+        </div>
+        <hr class="separador">
+    </ng-container>
+</section>

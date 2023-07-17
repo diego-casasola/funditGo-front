@@ -1,0 +1,59 @@
+.doc-container{
+    margin: 0 auto;
+    padding: 30px;
+}
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.tipo-proyecto {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.requisito {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.requisito-nombre {
+    flex-grow: 1;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.acciones {
+    display: flex;
+}
+
+.btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.separador {
+    border: none;
+    border-top: 1px solid #000000;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

@@ -26,4 +26,19 @@ export class ConfiguracionService {
     const url = `${this.baseUrl}/configuracion/proyecto/requisito`;
     return this.http.post<any>(url, fd);
   }
+
+  requerimientosProyecto(id: string){
+    const url = `${this.baseUrl}/configuracion/proyecto/${id}`;
+    return this.http.get<any>(url);
+  }
+
+  deleteRequisitoProyecto(data: any){
+    let body = {
+      proyectoId: data.proyectoId,
+      requisitoProyectoId: data.requisitoProyectoId
+    }
+    console.log(body);
+    const url = `${this.baseUrl}/configuracion/proyecto/requisito`;
+    return this.http.delete<any>(url, { body });
+  }
 }

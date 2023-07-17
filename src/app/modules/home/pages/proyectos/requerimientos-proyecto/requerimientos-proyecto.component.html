@@ -1,16 +1,25 @@
-<h2>Requerimientos</h2>
-<form [formGroup]="formReq">
+<h2 class="title">Requerimientos</h2>
+<form [formGroup]="formReq" class="form-container">
     <div formArrayName="requerimiento">
         <ng-container *ngFor="let requerimiento of requerimientos().controls; let i = index">
-            <div [formGroupName]="i">
-                <span>Suba {{requerimiento.get('nombreReq')?.value}} {{requerimiento.get('obligatorio')?.value ? '*':
-                    ''}}</span>
-                <input type="file" [formControlName]="'file'" (change)="onFileChange($event, i)">
+            <div [formGroupName]="i" class="requerimiento">
+                <span class="requerimiento-nombre">Suba {{requerimiento.get('nombreReq')?.value}}
+                    {{requerimiento.get('obligatorio')?.value ? '*' : ''}}</span>
+                <ng-container *ngIf="validarRequerimientoSubido(requerimiento)">
+                    <span>Archivo Subido</span>
+                </ng-container>
+                <ng-container *ngIf="!validarRequerimientoSubido(requerimiento)">
+                    <label class="file-upload">
+                        <input type="file" [formControlName]="'file'" (change)="onFileChange($event, i)">
+                        <span class="file-upload-text">{{getFileName(requerimiento.get('file')?.value)}}</span>
+                    </label>
+                </ng-container>
             </div>
+            <hr class="separador">
         </ng-container>
     </div>
 </form>
-<div class="group-btn">
-    <button mat-raised-button matStepperPrevious>Anterior</button>
-    <button mat-raised-button (click)="subir()">Guardar</button>
+<div class="button-group">
+    <button mat-raised-button matStepperPrevious class="prev-button">Anterior</button>
+    <button mat-raised-button (click)="subir()" class="save-button">Guardar</button>
 </div>
