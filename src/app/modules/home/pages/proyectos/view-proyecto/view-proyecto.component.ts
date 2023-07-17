@@ -17,6 +17,7 @@ export class ViewProyectoComponent implements OnInit {
   proyecto!: RProyecto;
 
   user = this.authService.usuario;
+  imgUrl = '';
 
   constructor(
     private proyectoService: ProyectoService,
@@ -141,6 +142,10 @@ export class ViewProyectoComponent implements OnInit {
 
   isCreador() {
     return this.user.user_id == this.proyecto.creador.id;
+  }
+
+  isLogged() {
+    return this.authService.isLogged();
   }
 
   verifyUser(){

@@ -22,13 +22,15 @@
                 </div>
             </div>
             <div class="buttons">
+                <button *ngIf="proyecto.estado === 'Revision' && isCreador()" class="btn btn-primary btn-donar"
+                    [routerLink]="['/proyecto/editar/', proyecto.id]">Editar Documentación</button>
                 <button *ngIf="proyecto.estado === 'Aceptado'" class="btn btn-primary btn-donar"
                     (click)="openDonation()">Donar a este proyecto</button>
                 <button *ngIf="proyecto.estado === 'Aceptado'" class="btn btn-primary compartir">Compartir</button>
-                <button *ngIf="user.is_staff === 'True' && proyecto.estado == 'Revision'" class="btn btn-success btn-aceptar"
-                    (click)="aceptarProyecto()">Aceptar</button>
-                <button *ngIf="user.is_staff === 'True' && proyecto.estado == 'Revision'" class="btn btn-danger btn-rechazar"
-                    (click)="rechazarProyecto()">Rechazar</button>
+                <button *ngIf="user.is_staff === 'True' && proyecto.estado == 'Revision'"
+                    class="btn btn-success btn-aceptar" (click)="aceptarProyecto()">Aceptar</button>
+                <button *ngIf="user.is_staff === 'True' && proyecto.estado == 'Revision'"
+                    class="btn btn-danger btn-rechazar" (click)="rechazarProyecto()">Rechazar</button>
             </div>
         </div>
     </div>
@@ -52,8 +54,9 @@
                         (comentariosActualizados)="actualizarComentarios()"
                         [IS_STAFF]="isCreador()"></app-comentarios-pro>
                 </mat-tab>
-                <mat-tab *ngIf="user.is_staff === 'True'" label="Información Privada">
-                    <app-comentarios-pro [COMENTARIOS]="proyecto.comentarios"></app-comentarios-pro>
+                <mat-tab *ngIf="user.is_staff === 'True' || isCreador() && isLogged()" label="Información Privada">
+                    <app-documentacion-proyecto [PROYECTOID]="proyecto.id" [NOMBREPROYECTO]="proyecto.titulo"
+                        [ESTADOPROYECTO]="proyecto.estado"></app-documentacion-proyecto>
                 </mat-tab>
             </mat-tab-group>
         </div>

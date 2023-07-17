@@ -23,6 +23,7 @@ import { ComentarioModalComponent } from './components/modals/comentario-modal/c
 import { ListaUsuariosComponent } from './pages/admin/lista-usuarios/lista-usuarios.component';
 import { ListaProyectosUserComponent } from './pages/proyectos/lista-proyectos-user/lista-proyectos-user.component';
 import { RequerimientosProyectoComponent } from './pages/proyectos/requerimientos-proyecto/requerimientos-proyecto.component';
+import { DocumentacionProyectoComponent } from './components/documentacion-proyecto/documentacion-proyecto.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { RequerimientosProyectoComponent } from './pages/proyectos/requerimiento
     ComentarioModalComponent,
     ListaUsuariosComponent,
     ListaProyectosUserComponent,
-    RequerimientosProyectoComponent
+    RequerimientosProyectoComponent,
+    DocumentacionProyectoComponent
   ],
   imports: [
     CommonModule,
