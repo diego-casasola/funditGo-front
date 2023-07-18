@@ -20,13 +20,15 @@ export class ViewProyectoComponent implements OnInit {
   user = this.authService.usuario;
   imgUrl = '';
 
+  userName = '';
+
   constructor(
     private proyectoService: ProyectoService,
     private authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private modalService: ModalService,
     private route: Router,
-    private configService: ConfiguracionService
+    private configService: ConfiguracionService,
   ) {
 
   }
@@ -35,6 +37,8 @@ export class ViewProyectoComponent implements OnInit {
     this.obtenerImagen();
     await this.getProyecto();
     console.log(this.isCreador());
+    console.log('es colaborador');
+    console.log(this.isColaborador());
   }
 
   async getProyecto(): Promise<void> {
@@ -159,6 +163,26 @@ export class ViewProyectoComponent implements OnInit {
             this.imgUrl = req.archivoId;
           }
         });
+      }
+    );
+  }
+
+  isColaborador(): boolean {
+    let isColaborador = false;
+    this.proyecto.colaboradores.forEach((colaborador) => {
+      if (colaborador.usuario.id === this.authService.currentUserId) {
+        this.userName = colaborador.nombre;
+        isColaborador = true;
+      }
+    });
+    return isColaborador;
+  }
+
+  agregarColaborador() {
+    const dialog = this.modalService.openAddColaboradorDialog(this.proyectoId, this.userName, this.authService.currentUserId);
+    dialog.afterClosed().subscribe(
+      (resp) => {
+        this.getProyecto();
       }
     );
   }

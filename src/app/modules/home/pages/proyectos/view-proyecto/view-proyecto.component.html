@@ -22,7 +22,9 @@
                 </div>
             </div>
             <div class="buttons">
-                <button *ngIf="proyecto.estado === 'Revision' && isCreador()" class="btn btn-primary btn-donar"
+                <button *ngIf="isCreador()" class="btn btn-primary btn-donar" (click)="agregarColaborador()">Agregar
+                    colaborador</button>
+                <button *ngIf=" proyecto.estado==='Revision' && isCreador()" class="btn btn-primary btn-donar"
                     [routerLink]="['/proyecto/editar/', proyecto.id]">Editar Documentación</button>
                 <button *ngIf="proyecto.estado === 'Aceptado'" class="btn btn-primary btn-donar"
                     (click)="openDonation()">Donar a este proyecto</button>
@@ -47,7 +49,10 @@
                         [COMPROMISO]="proyecto.compromisoAmbiental"></app-detalles-pro>
                 </mat-tab>
                 <mat-tab *ngIf="user.is_staff === 'False' || user" label="Actualizaciones">
-                    <app-actualizaciones-pro [ACTUALIZACIONES]="proyecto.actualizaciones"></app-actualizaciones-pro>
+                    <app-actualizaciones-pro [ACTUALIZACIONES]="proyecto.actualizaciones"
+                        [ISCOLABORADOR]="isColaborador()" [PROYECTO_ID]="proyecto.id"
+                        (comentariosActualizados)="actualizarComentarios()"
+                        [IS_STAFF]="isCreador()"></app-actualizaciones-pro>
                 </mat-tab>
                 <mat-tab *ngIf="user.is_staff === 'False' || user" label="Comentarios">
                     <app-comentarios-pro [COMENTARIOS]="proyecto.comentarios" [PROYECTO_ID]="proyectoId"
@@ -57,6 +62,10 @@
                 <mat-tab *ngIf="user.is_staff === 'True' || isCreador() && isLogged()" label="Información Privada">
                     <app-documentacion-proyecto [PROYECTOID]="proyecto.id" [NOMBREPROYECTO]="proyecto.titulo"
                         [ESTADOPROYECTO]="proyecto.estado"></app-documentacion-proyecto>
+                </mat-tab>
+                <mat-tab *ngIf="isCreador() && isLogged()" label="Colaboradores">
+                    <app-colaboradores-pro [COLABORADORES]="proyecto.colaboradores" [PROYECTO_ID]="proyecto.id"
+                        (comentariosActualizados)="actualizarComentarios()"></app-colaboradores-pro>
                 </mat-tab>
             </mat-tab-group>
         </div>

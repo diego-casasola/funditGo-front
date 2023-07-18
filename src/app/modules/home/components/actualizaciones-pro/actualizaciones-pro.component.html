@@ -1,4 +1,8 @@
 <section>
+    <div class="comentarios-header">
+        <h2 class="comentarios-title">ACTUALIZACIONES</h2>
+        <button *ngIf="isColaborador || is_staff === true" class="comentar-btn" (click)="openAddActualizacionDialog()" mat-raised-button>Agregar Actualización</button>
+    </div>
     <div *ngIf="actualizaciones.length > 0; else nohay">
         <div *ngFor="let actualizacion of actualizaciones">
             <div class="actualizacion">

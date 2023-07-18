@@ -7,6 +7,7 @@ import { GestionProyectosComponent } from './pages/proyectos/gestion-proyectos/g
 import { PagoComponent } from './pages/pago/pago.component';
 import { ProyectosRevisionComponent } from './pages/admin/proyectos-revision/proyectos-revision.component';
 import { ListaProyectosUserComponent } from './pages/proyectos/lista-proyectos-user/lista-proyectos-user.component';
+import { DonacionesUserComponent } from './pages/proyectos/donaciones-user/donaciones-user.component';
 
 const routes: Routes = [{
   path: '',
@@ -39,6 +40,10 @@ const routes: Routes = [{
 {
   path: 'proyectos/mis-proyectos',
   component: ListaProyectosUserComponent
+},
+{
+  path: 'proyectos/misdonaciones',
+  component: DonacionesUserComponent
 }
 ];
 

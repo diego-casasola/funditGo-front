@@ -1,0 +1,33 @@
+<section class="lista-proyectos-component">
+    <div *ngIf="listaDonaciones.length > 0; else nohay">
+        <div class="container-proList">
+            <div class="row cards-container">
+                <ng-container *ngFor="let item of listaDonaciones">
+                    <div class="col">
+                        <div class="card border-light mt-4" style="width: 18rem;">
+                            <mat-progress-bar mode="determinate" value="{{item.porcentajeDonaciones}}"></mat-progress-bar>
+                            <div class="card-body">
+                                <div class="info-min">
+                                    <span class="date">{{ item.fechaCreacion | date:'MMMM dd, yyyy' }}</span>
+                                    <span class="cant-don">{{item.cantidadDonaciones == 0? 'Sin donaciones':
+                                        item.cantidadDonaciones + ' donaciones'}}</span>
+                                </div>
+                                <h5 class="card-title">{{item.titulo}}</h5>
+                                <p class="card-text">Ha donado {{item.cantidadDonacionesHechaPorUsuario}} veces en este proyecto</p>
+                                <p class="card-text">Su cantidad donada es {{item.donacionTotalHechaPorUsuario}}Bs.-</p>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                    <button class="col-sm-9 show" mat-raised-button type="button"
+                                        [routerLink]="['/proyecto/' + item.id]">Ver Proyecto</button> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #nohay>
+        No Hay
+    </ng-template>
+</section>

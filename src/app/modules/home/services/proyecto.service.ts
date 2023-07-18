@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { CProyecto, Proyecto, RProyecto } from '../interfaces/proyecto.interface';
+import { CProyecto, Donacion, Proyecto, RProyecto } from '../interfaces/proyecto.interface';
 import { Observable } from 'rxjs';
 import { Paginacion } from '../interfaces/paginacion.interface';
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -183,5 +183,39 @@ export class ProyectoService {
   proyectosCreador(usuarioId: string) {
     const url = `${this.baseUrl}/proyecto/buscar/creador/${usuarioId}`;
     return this.http.get<Proyecto[]>(url);
+  }
+
+  donacionesUser(usuarioId: string): Observable<Donacion[]> {
+    const url = `${this.baseUrl}/proyecto/buscar/donaciones/${usuarioId}`;
+    return this.http.get<Donacion[]>(url);
+  }  
+
+  addColaborador(data: any){
+    const url = `${this.baseUrl}/proyecto/colaborador`;
+    const headers = {
+      Authorization: `Bearer ${this.authService.accessToken}`,
+    }
+    return this.http.post<any>(url, data, { headers });
+  }
+
+  proyectosColaborador(usuarioId: string) {
+    const url = `${this.baseUrl}/proyecto/buscar/colaborador/${usuarioId}`;
+    return this.http.get<Proyecto[]>(url);
+  }
+
+  addActualizacion(data: any){
+    const url = `${this.baseUrl}/proyecto/actualizacion`;
+    const headers = {
+      Authorization: `Bearer ${this.authService.accessToken}`,
+    }
+    return this.http.post<any>(url, data, { headers });
+  }
+
+  eliminarColaborador(data: any) {
+    const url = `${this.baseUrl}/proyecto/colaborador`;
+    const headers = {
+      Authorization: `Bearer ${this.authService.accessToken}`,
+    }
+    return this.http.delete<any>(url, { headers, body: data });
   }
 }

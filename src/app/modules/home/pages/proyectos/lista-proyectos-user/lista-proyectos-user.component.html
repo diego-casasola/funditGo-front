@@ -34,3 +34,40 @@
         No Hay
     </ng-template>
 </div>
+
+<div class="lista-proyectos-component">
+    <h2>Colaboraciones</h2>
+    <div *ngIf="listaProyectosColaboracion.length > 0; else nohay">
+        <div class="container-proList">
+            <div class="row cards-container">
+                <ng-container *ngFor="let item of listaProyectosColaboracion">
+                    <div class="col">
+                        <div class="card border-light mt-4" style="width: 18rem;">
+                            <img src="{{item.imagen ? item.imagen : 'assets/images/crowdfunding-flat-background-vector.png'}}"
+                                class="card-img-top square" alt="...">
+                            <mat-progress-bar mode="determinate"
+                                value="{{item.porcentajeDonaciones}}"></mat-progress-bar>
+                            <div class="card-body">
+                                <div class="info-min">
+                                    <span class="date">{{ item.fechaCreacion | date:'MMMM dd, yyyy' }}</span>
+                                    <span class="cant-don" [ngStyle]="getEstadoStyles(item.estado)">
+                                        {{ item.estado }}
+                                    </span>
+                                </div>
+                                <h5 class="card-title">{{item.titulo}}</h5>
+                                <p class="card-text">{{item.descripcion}}</p>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                    <button class="col-sm-9 show" mat-raised-button type="button"
+                                        (click)="verProyecto(item)">Ver Proyecto</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <ng-template #nohay>
+        No Hay
+    </ng-template>
+</div>

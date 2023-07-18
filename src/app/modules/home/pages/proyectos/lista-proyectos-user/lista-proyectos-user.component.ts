@@ -12,6 +12,7 @@ import { ConfiguracionService } from '../../../services/configuracion.service';
 })
 export class ListaProyectosUserComponent implements OnInit {
   listaProyectos: Proyecto[] = [];
+  listaProyectosColaboracion: Proyecto[] = [];
 
   constructor(
     private authService: AuthService,
@@ -22,6 +23,7 @@ export class ListaProyectosUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProyectos();
+    this.getProyectosColaborador();
   }
 
   getProyectos() {
@@ -81,6 +83,29 @@ export class ListaProyectosUserComponent implements OnInit {
     if (proyecto.estado === 'Revision' || proyecto.estado === 'Aceptado') {
       this.router.navigate(['proyecto/', proyecto.id]);
     }
+  }
+
+  getProyectosColaborador() {
+    this.proyectoService.proyectosColaborador(this.authService.currentUserId).subscribe(
+      (resp) => {
+        console.log(resp);
+        this.listaProyectosColaboracion = resp;
+        this.listaProyectosColaboracion.forEach((proyecto: any) => {
+          this.configService.requerimientosProyecto(proyecto.id).subscribe(
+            (resp: any) => {
+              resp.requisitos.forEach((requisito: any) => {
+                if (requisito.requerimiento.nombre === 'Imagen' || requisito.requerimiento.nombre === 'ImagenPrincipal') {
+                  if (requisito.archivoId){
+                    proyecto.imagen = 'https://localhost:7120/api/configuracion/file/'+requisito.archivoId;
+                  } else {
+                    
+                  }
+                }
+              });
+            });
+        });
+      },
+      (err) => { console.log(err); });
   }
   
 }

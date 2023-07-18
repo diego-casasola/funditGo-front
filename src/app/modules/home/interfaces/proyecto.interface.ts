@@ -74,3 +74,17 @@ export interface Requerimiento {
     id: string;
     nombre: string;
 }
+
+export interface Donacion {
+    cantidadDonacionesHechaPorUsuario: number;
+    donacionTotalHechaPorUsuario: number;
+    id: string;
+    fechaCreacion: string;
+    tipoProyecto: string;
+    descripcion: string;
+    titulo: string;
+    estado: string;
+    donacionMinima: number;
+    porcentajeDonaciones: number;
+    cantidadDonaciones: number;
+}

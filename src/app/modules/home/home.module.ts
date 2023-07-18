@@ -24,6 +24,10 @@ import { ListaUsuariosComponent } from './pages/admin/lista-usuarios/lista-usuar
 import { ListaProyectosUserComponent } from './pages/proyectos/lista-proyectos-user/lista-proyectos-user.component';
 import { RequerimientosProyectoComponent } from './pages/proyectos/requerimientos-proyecto/requerimientos-proyecto.component';
 import { DocumentacionProyectoComponent } from './components/documentacion-proyecto/documentacion-proyecto.component';
+import { DonacionesUserComponent } from './pages/proyectos/donaciones-user/donaciones-user.component';
+import { ColaboradorModalComponent } from './components/modals/colaborador-modal/colaborador-modal.component';
+import { ActualiacionModalComponent } from './components/modals/actualiacion-modal/actualiacion-modal.component';
+import { ColaboradoresProComponent } from './components/colaboradores-pro/colaboradores-pro.component';
 
 
 @NgModule({
@@ -44,7 +48,11 @@ import { DocumentacionProyectoComponent } from './components/documentacion-proye
     ListaUsuariosComponent,
     ListaProyectosUserComponent,
     RequerimientosProyectoComponent,
-    DocumentacionProyectoComponent
+    DocumentacionProyectoComponent,
+    DonacionesUserComponent,
+    ColaboradorModalComponent,
+    ActualiacionModalComponent,
+    ColaboradoresProComponent
   ],
   imports: [
     CommonModule,

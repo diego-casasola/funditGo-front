@@ -1,0 +1,16 @@
+<section class="text-center">
+    <h2>Lista de Colaboradores</h2>
+    <ng-container *ngFor="let item of colaboradores">
+      <div class="card w-25 d-inline-block">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <span>{{ item.usuario.nombreCompleto }}</span>
+            <button class="btn btn-danger" (click)="eliminarColaborador(item)">
+              X
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </section>
+  

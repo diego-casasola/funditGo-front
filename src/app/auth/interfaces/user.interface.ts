@@ -36,3 +36,8 @@ export interface Permisos {
     CREATE_DONACIONES: string
     CREATE_COMENTARIOS: string
 }
+
+export interface Colaborador{
+    id: string;
+    usuario: ShortUser;
+}
