@@ -20,8 +20,8 @@ export class ComentariosProComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('--------staf?----------');
-    console.log(this.is_staff);
+    console.log('çreador')
+    console.log(this.isCreadorComentario(this.comentarios[0]));
   }
 
   openComentar() {
@@ -49,4 +49,13 @@ export class ComentariosProComponent implements OnInit {
     }
   }
 
+  isCreadorComentario(comentario: any) {
+    console.log(comentario);
+    console.log(this.authService.currentUserId);
+    return comentario.usuario.id === this.authService.currentUserId;
+  }
+
+  eliminarComentario(comentario: any){
+
+  }
 }

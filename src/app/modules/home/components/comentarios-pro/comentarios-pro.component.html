@@ -5,9 +5,12 @@
     </div>
     <div *ngIf="comentarios.length > 0; else nohay">
         <ng-container *ngFor="let comentario of comentarios">
-            <div class="comentario">
-                <div class="usuario">Comentado por: {{ comentario.usuario.nombreCompleto }}</div>
-                <div class="texto">{{ comentario.texto }}</div>
+            <div class="comentario d-flex justify-content-between align-items-center">
+                <div class="textoContainer">
+                    <div class="usuario">Comentado por: {{ comentario.usuario.nombreCompleto }}</div>
+                    <div class="texto">{{ comentario.texto }}</div>
+                </div>
+                <button *ngIf="isCreadorComentario(comentario)" class="btn btn-danger" (click)="eliminarComentario(comentario)">X</button>
             </div>
         </ng-container>
     </div>
